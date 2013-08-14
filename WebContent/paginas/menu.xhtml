@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+        <h:body >
+
+        <h:form>
+          <div style="background-color: #FF6600" >
+         </div>
+
+                <p:menubar autoDisplay="false" >  
+                       
+                        <p:submenu label="Configure" icon="ui-icon-note">  
+                       <!--      <p:menuitem  value="usuario"      url="/paginas/user.xhtml" />
+                            <p:menuitem  value="Spot"         />
+                         -->    
+                            <p:menuitem  value="Agenda de Ofertas" url="/paginas/scheduleSpot.xhtml"   />
+                        </p:submenu>  
+					    
+                        <p:menuitem  value="Change Login"   url="/paginas/changeLogintela.xhtml"/> 
+                        <p:menuitem  value="Logout"        action="#{loginMBean.logout}"/>    
+                    </p:menubar>   
+          
+             <h:messages id="messages" style="visibility: hidden; height: 1px ;display: none" />  
+        </h:form>
+    </h:body>
+
+</html>
+

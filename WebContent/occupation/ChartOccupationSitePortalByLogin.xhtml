@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+ <h:head><title>Occupation</title>
+ 
+ <script type="text/javascript">
+    function format_axes_x_ext() {
+        this.cfg.axes.xaxis.tickOptions = {
+            formatString : '%#.1f'
+        };
+    }
+</script>
+ </h:head>
+ <h:body>
+             <h:form id="dataTablePortals">  
+               <p:panel  header="Portals' Occupation by Site" toggleable="false" toggleSpeed="500" style="font-size: 12px">
+               <h:panelGrid columns="1" width="80%" >  
+                      <p:poll interval="3" update="portals" /> 
+            			 	 <p:barChart id="portals" value="#{chartSitePortalBean.categoryModelSitePortal}" legendPosition="se" style="height:500px" 
+            					refreshInterval="50" 
+            					title="Users by Portals - #{site.name} - #{site.description}" 
+            					orientation="horizontal" min="0" max="#{chartSitePortalBean.capacity}" 
+            					rendered="true"
+            					extender="format_axes_x_ext"/>
+            			
+          					 <p:commandButton style="font-size: 12px"  value="Back" onclick="window.history.back()"/>       
+                 </h:panelGrid>
+				</p:panel>
+			</h:form>
+</h:body>
+</html> 

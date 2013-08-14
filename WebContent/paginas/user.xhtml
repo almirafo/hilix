@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/paginas//template.xhtml">
+	
+      <ui:define name="conteudo">
+      	<ui:include src="menu.xhtml"/>
+            <h:form id="tabela">
+      	<div id="secondary-menu">
+				<ul>
+					<li><h:commandLink
+							value="#{rotulo.listar} #{rotulo.usuarios}"
+							actionListener="#{usuarioMBean.iniciar}"
+							id="#{rotulo.listarUsuario}" /></li>
+					<li><p:commandLink
+							value="#{rotulo.novo} #{rotulo.usuario}"
+							action="#{usuarioMBean.iniciar}"
+							id="#{rotulo.novoUsuario}"
+							oncomplete="modalSalvarUsuario.show();"
+							update=":formSalvarUsuario" /></li>
+				</ul>
+			</div>
+            <div id="round-border">
+                <h3>
+					<h:outputText value="#{rotulo.listarTodosUsuarios}" />
+				</h3>
+								<p:dataTable
+					var="usuario"
+					value="#{usuarioMBean.listaUsuarios}"
+					id="usuarioList"
+					widgetVar="usuarioList"
+					paginator="true"
+					rows="10"
+					selectionMode="single"
+					selection="#{usuarioMBean.usuarioSelecionado}"
+					rowKey="#{usuario.idUserAccess}"
+					emptyMessage="#{rotulo.naoHaUsuarios}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<p:ajax event="rowSelect" update=":formSalvarUsuario" oncomplete="modalSalvarUsuario.show()" /> 
+
+					<p:column
+						headerText="Id"
+						styleClass="text-align:center;"
+						width="0"
+						>
+						<h:outputText value="#{usuario.idUserAccess}" />
+					</p:column>
+
+
+					
+					<p:column
+						headerText="#{rotulo.login}"
+						styleClass="text-align:center;"
+						sortBy="#{usuario.login}"
+						filterBy="#{usuario.login}">
+						<h:outputText value="#{usuario.login}" />
+					</p:column>
+					<p:column
+						headerText="#{rotulo.email}"
+						styleClass="text-align:center;"
+						sortBy="#{usuario.email}"
+						filterBy="#{usuario.email}">
+						<h:outputText value="#{usuario.email}" />
+					</p:column>
+					<p:column
+						headerText="#{rotulo.tipo} #{rotulo.usuario}"
+						styleClass="text-align:center;"
+						sortBy="#{usuario.userType.nameUserType}"
+						filterBy="#{usuario.userType.nameUserType}">
+						<h:outputText value="#{usuario.userType.nameUserType}" />
+					</p:column>
+					<p:column
+						headerText="#{rotulo.status}"
+						styleClass="text-align:center;"
+						sortBy="#{usuario.status}"
+						filterBy="#{usuario.status}"
+						filterOptions="#{usuarioMBean.statusOptions}">
+						<h:outputText value="#{usuario.status}">
+							<f:converter converterId="StatusConverter" />
+						</h:outputText>
+					</p:column>
+					
+					
+				</p:dataTable>
+                </div>
+            </h:form>
+            
+   		<p:dialog
+			widgetVar="modalSalvarUsuario"
+			modal="true"
+			width="570"
+			resizable="false"
+			height="600"
+			onCloseUpdate=":formUsuario:messages"
+			onHide="labels();">
+			
+			         
+           <h:form id="formSalvarUsuario"> 
+             <div id="round-border">     
+            <p:panel header="#{rotulo.usuario}"  rendered="true" style=" width: 55%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden  value="#{usuarioMBean.usuarioSelecionado.idUserAccess}" />
+                
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
+                
+                    #{rotulo.login}   :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.login}"    />
+                    #{rotulo.email}   :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.email}" size="60" />
+                    #{rotulo.tipo} #{rotulo.usuario}   : <h:selectOneListbox
+									size="1"
+									disabled="#{usuarioMBean.desabilitarTipoUsuario}"
+									value="#{usuarioMBean.usuarioSelecionado.userType.idUserType}"
+									id="tipoUsuario">
+									<f:selectItems value="#{usuarioMBean.listaUserTypes}" />
+								</h:selectOneListbox>               
+					              
+					 #{rotulo.senha}:  <h:inputSecret
+											value="#{usuarioMBean.usuarioSelecionado.password}"
+											id="senha"
+											required="true"
+											validatorMessage="#{rotulo.senha}: #{rotulo.passwordNaoDigitada}"
+											requiredMessage="#{rotulo.senha}: #{rotulo.campoObrigatorio}">
+											<f:validateLength
+												maximum="50"
+												minimum="3" />
+										</h:inputSecret>
+					              
+					              
+					  #{rotulo.confirmeSenha}: <h:inputSecret
+													value="#{usuarioMBean.passwordConfirmado}"
+													id="passwordConfirmado"
+													required="true"
+													requiredMessage="#{rotulo.confirmeSenha}: #{rotulo.campoObrigatorio}">
+													<f:validateLength
+														maximum="50"
+														minimum="3" />
+												</h:inputSecret>            
+					              
+					 #{rotulo.status} :<h:selectOneRadio
+									
+									value="#{usuarioMBean.usuarioSelecionado.status}"
+									id="statusCampanha">
+									<f:selectItem
+										itemValue="0"
+										itemLabel="#{rotulo.inativo}" />
+									<f:selectItem
+										itemValue="1"
+										itemLabel="#{rotulo.ativo}" />
+								</h:selectOneRadio>
+					 
+					 
+					 
+					 
+					                 
+            </h:panelGrid>   
+			<p class="botoes">
+						<p:commandButton
+							update=":formSalvarUsuario:messageSalvar,:formUsuario"
+							id="#{rotulo.enviar}"
+							action="#{usuarioMBean.salvarUsuario}"
+							ajax="false"
+							oncomplete="handleSalvarRequest(xhr, status, args)"
+							value="#{rotulo.enviar}" />
+						<p:commandButton
+							type="reset"
+							value="#{rotulo.limpar}"
+							id="#{rotulo.limpar}" />
+						<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" actionListener ="#{usuarioMBean.excluirUsuario}"  ajax="false"/>	
+					</p>    
+               
+            </p:panel>
+            </div>
+            <p:messages severity="error" closable="true"/>
+                      
+        </h:form>  
+        </p:dialog>    
+      </ui:define>
+</ui:composition>

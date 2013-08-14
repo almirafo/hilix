@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+
+    
+    <style type="text/css">
+
+        li.ui-selectonemenu-item{
+            font-size:12px;
+            background-color: #ffcc00;
+        }
+        .ui-datatable{
+            background-color: #b2d5d6;
+        }
+    </style>
+    
+    <f:view>
+    <h:head>
+        <script>
+	        $(window).load(function () {
+	            $(document).delegate(".checkall", "click", function(event) {
+	                  $(this).closest("table").find(':checkbox').attr('checked', this.checked);
+	            });
+	        });
+        </script>
+        
+        
+        
+        <title>Users</title>
+    </h:head>
+        <h:body > <!--style="background-image:url('../../resources/imagens/fundo.jpg');background-position: 50% 0%;background-repeat: no-repeat"    -->
+        
+           <p:panel header="Users to Login">
+            <h:form id="tabela">
+                 <p:dataTable emptyMessage="No Data Found." scrollWidth="30" id="users"   paginator="true" value="#{loginBean.listAll}" var="user"   rows="10" style="width:60%; font-family:Arial; font-size: 12px;"> 
+
+
+                <p:column style="width:100px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Company" />
+                    </f:facet>
+                         <h:outputText value="#{user.company.name}"/>
+                </p:column> 
+                   
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Name" />
+                    </f:facet>
+                         <h:outputText value="#{user.username}"/>
+                </p:column> 
+
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="E-mail" />
+                    </f:facet>
+                         <h:outputText value="#{user.email}"/>
+                </p:column> 
+                
+          
+                     
+                <p:column style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Edit" />
+                    </f:facet>
+                    <h:commandLink  actionListener="#{loginBean.edit(user)}">
+                    
+                    <h:graphicImage url="/resources/imagens/botoes/Designcontest-Vintage-Pencil.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+
+                <p:column  style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Remove" />
+                    </f:facet>
+                    <h:commandLink  actionListener="#{loginBean.remove(user)}"  >
+                    
+                    <h:graphicImage url="/resources/imagens/botoes/Deleket-Button-Button-Close.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+
+                </p:dataTable>
+            </h:form>
+            
+            
+           <h:form id="FormUser"> 
+                 
+            <p:panel header="User"  rendered="true" style=" width: 60%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden  value="#{loginBean.loginId}" validatorMessage="#{loginBean.loginId}"/>
+                 <h:inputHidden id="edita" value="#{loginBean.edita}"/>
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
+                
+                    Name        :  <p:inputText     value="#{loginBean.userName}"    />
+                    E-mail      :  <p:inputText     value="#{loginBean.email}" />
+                    Descripton  :  <p:inputText     value="#{loginBean.description}" />
+
+                    Level       :  <h:selectOneRadio id="checkbox" value="#{loginBean.userLevel}" >
+					                <f:selectItem itemValue="U" itemLabel="User" />
+					                <f:selectItem itemValue="A" itemLabel="Admin" />
+					               </h:selectOneRadio>                  
+                    
+                    Company     :  <p:selectOneMenu value="#{loginBean.company.companyId}" effect="fade"  style="font-size: smaller;font: smaller ;width: 200px;" >  
+                                    <f:selectItem itemLabel="--Choose--" itemValue=""/>  
+                                    <f:selectItems value="#{companyBean.listAll}" var="company" itemLabel="#{company.name}" itemValue="#{company.companyId}"/>  
+                                   </p:selectOneMenu>  
+                
+                     
+					                 
+            </h:panelGrid>   
+             <h:panelGrid  columns="3">     
+						                <p:commandButton value="Save"     action ="#{loginBean.save}"       ajax="false"    />
+						                <p:commandButton value="Reset"    actionListener ="#{loginBean.reset}"  ajax="false"/>
+							            <p:commandButton value="portals"  rendered="${loginBean.loginId > 0}"  onclick="dlgPortals.show();"  ajax="true"/>
+						                
+			</h:panelGrid>      
+               
+            </p:panel>
+                <p:messages severity="error" closable="true"/>
+				<!-- Dialog Login x Portals  -->
+                
+		        
+            	
+                      
+        </h:form>
+             <h:form id="formPortals">   
+            <p:dialog  id="dlgPortals1" widgetVar="dlgPortals" header="Portals do Associate" modal="true"  height="400" width="600" >
+
+ 							<h:dataTable id="selectedAccessRights" value="#{portalBean.setListAllByLogin( loginBean.loginId)}" var="item" border="1">
+							    <h:column>
+							     <f:facet name="header">
+							         <h:selectBooleanCheckbox class="checkall"/>
+							    </f:facet>
+							        <h:selectBooleanCheckbox id="checked" value="#{item.checked}" />
+							    </h:column>
+
+							    <h:column>
+							        <h:outputLabel value="#{item.portalName}" />
+							        <h:inputHidden id="items" value="#{item}"/>  
+							    </h:column>
+							    
+							</h:dataTable>
+ 							
+ 							<h:commandButton value="submit" action="#{portalBean.update()}" ajax="true"/>
+ 							               				
+            				
+				 <!--  -->        
+		        </p:dialog>  
+         </h:form>
+       </p:panel>
+            
+            	
+            	
+            
+    </h:body>
+    </f:view>
+</html>
+

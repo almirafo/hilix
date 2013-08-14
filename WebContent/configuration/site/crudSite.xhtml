@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <style type="text/css">
+        .ui-datatable{
+            background-color: #b2d5d6;
+        }
+    </style>
+    
+    <f:view>
+    <h:head>
+        <title>Site</title>
+    </h:head>
+        <h:body>
+        
+             <h:outputLabel value="Sites"></h:outputLabel>
+             <h:form id="dataTableCompany">    
+                     <p:dataTable emptyMessage="No Data Found." scrollWidth="30" id="sites"   paginator="true" value="#{siteBean.listAll}" var="site"   rows="10" style="width:60%; font-family:Arial; font-size: 12px;"> 
+
+                
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Name" />
+                    </f:facet>
+                         <h:outputText value="#{site.name}"/>
+                </p:column> 
+
+
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Description" />
+                    </f:facet>
+                         <h:outputText value="#{site.description}"/>
+                </p:column> 
+
+
+
+                <p:column style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Edit" />
+                    </f:facet>
+                    <h:commandLink   actionListener="#{siteBean.load(site)}">
+                    <h:graphicImage  url="/resources/imagens/botoes/Designcontest-Vintage-Pencil.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                    
+                </p:column> 
+
+                <p:column  style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Remove" />
+                    </f:facet>
+                    <h:commandLink  action="#{siteBean.remove(site)}" >
+                    
+                		<h:graphicImage url="/resources/imagens/botoes/Deleket-Button-Button-Close.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+                     
+                </p:dataTable>
+
+            
+                 
+            <p:panel header="Site"  rendered="true" style=" width: 60%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden id="siteId" value="#{siteBean.siteId}"/>
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ;width: 800px">
+                
+                    
+                    Name         :  <p:inputText     value="#{siteBean.name}"         required="false"/>
+                    Description  :  <p:inputText     value="#{siteBean.description}"  required="false"/>
+                
+            </h:panelGrid>
+
+                    <h:panelGrid columns="2" >
+                    
+                <h:commandButton value="Save"  actionListener ="#{siteBean.save}"/>
+                <h:commandButton value="Reset" actionListener ="#{siteBean.reset}"/>
+
+            </h:panelGrid>   
+                
+            </p:panel>
+        </h:form>
+    </h:body>
+    </f:view>
+</html>

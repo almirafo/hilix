@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+	<application>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>pt_BR</supported-locale>
+			<supported-locale>es_ES</supported-locale>
+			<supported-locale>en_US</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>resources.application</base-name>
+			<var>app</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>resources.messages</base-name>
+			<var>rotulo</var>
+		</resource-bundle>
+	</application>
+	<managed-bean>
+		<managed-bean-name>languageController</managed-bean-name>
+		<managed-bean-class>br.com.supportcomm.freecall.managedbean.LanguageController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<lifecycle>
+		<phase-listener>br.com.supportcomm.freecall.system.ControleUsuarioListener</phase-listener>
+	</lifecycle>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inicio</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuario</from-outcome>
+			<to-view-id>/paginas/usuario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>termos</from-outcome>
+			<to-view-id>/paginas/termos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>seguranca</from-outcome>
+			<to-view-id>/paginas/seguranca.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>menuInitial</from-outcome>
+			<to-view-id>/paginas/menuInitial.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>changeLogin</from-outcome>
+			<to-view-id>/changeLogintela.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+</faces-config>

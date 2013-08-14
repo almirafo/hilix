@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <style type="text/css">
+        
+            .ui-menubar .ui-menuitem-link {
+               font-size: 12px;
+               font-family: sans-serif;
+               
+            }
+            
+    </style>
+    <h:head>
+        <title>Occupation - SupportComm - version 1.1.1</title>
+    </h:head>
+        <h:body >
+
+        <h:form>
+          <div style="background-color: #FF6600" >
+          <table width="100%">
+          <tr>
+          <td width="70%"><h:graphicImage url="resources/imagens/diversos/marca_en.png" height="40px"/></td>
+          <td width="30%"><p:outputLabel value=" ${sessionScope.logado.getCompany().getName()} - Hello ${sessionScope.logado.getUsername()} !" style="font-size:15px"/>
+                          <br/><p:outputLabel value="version 1.1.1"  style="font-size:10px"/>
+          </td>
+	      </tr>    
+	          </table>
+         </div>
+
+                <p:menubar autoDisplay="false" >  
+                        <c:if test="${sessionScope.logado.getUserLevel() == 'A'}">
+                        <p:submenu label="Configure" icon="ui-icon-note">  
+                            <p:menuitem  value="Company" url="company.xhtml" />
+                            <p:menuitem  value="Portal"  url="portal.xhtml"/>
+                            <p:menuitem  value="User"    url="user.xhtml"/>
+                            <p:menuitem  value="IVR"     url="ivr.xhtml"/>
+                            <p:menuitem  value="Site"    url="site.xhtml"/>
+                        </p:submenu>  
+					    </c:if>
+                        <p:submenu label="Occupation" icon="icon-bookmark">  
+                            <p:menuitem  value="PieChart Occupation"  url="occupationtotalByLogin.xhtml" />
+                             <p:menuitem  value="PieChart Occupation site "  url="occupationSiteByLogin.xhtml" />
+                        </p:submenu>  
+
+                       
+                        <p:menuitem  value="Change Login" action="changeLogin.xhtml"/> 
+                        <p:menuitem  value="Logout"        action="#{loginBean.logout}"/>    
+                    </p:menubar>   
+          
+             <h:messages id="messages" style="visibility: hidden; height: 1px ;display: none" />  
+        </h:form>
+    </h:body>
+
+</html>
+

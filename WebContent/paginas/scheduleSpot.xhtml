@@ -1,0 +1,81 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/paginas//template.xhtml">
+	<ui:define name="conteudo">
+	<h:body>
+			    <style type="text/css">
+        
+					.fc-event-time{
+					    display:none;
+					}
+			            
+			    </style>
+
+			    <ui:include src="menu.xhtml"/>
+
+			<br />
+			<div id="round-border">
+			<h:form id="change" >
+				
+				<h3>
+					<h:outputText value="#{rotulo.Schedule_Title}" />
+				</h3>
+				<div id="formulario">
+				<h:form id="form">
+			
+				    <p:growl id="messages" showDetail="true" />
+				
+				    <p:schedule id="schedule" value="#{schedule.eventModel}" view="month"  widgetVar="myschedule">
+				 
+				        <p:ajax event="dateSelect"  listener="#{schedule.onDateSelect}"  update="eventDetails" oncomplete="eventDialog.show()" />
+				       
+				        <p:ajax event="eventSelect" listener="#{schedule.onEventSelect}" update="eventDetails" oncomplete="eventDialog.show()" />
+				        <!-- 
+				        <p:ajax event="eventMove"   listener="#{scheduleController.onEventMove}"   update="messages" />
+				        <p:ajax event="eventResize" listener="#{scheduleController.onEventResize}" update="messages" />
+				        -->
+				    </p:schedule>
+				
+				
+				
+				<p:dialog widgetVar="eventDialog" header="Ofertas" showEffect="clip" hideEffect="clip">  
+			        <h:panelGrid id="eventDetails" columns="2">  
+			            <h:outputLabel for="title" value="Título:" />  
+			            
+			            <p:inputText id="title" value="#{schedule.event.title}" />  
+			  			 
+			  			<h:outputLabel for="spots" value="Ofertas:" />  
+			  			<p:orderList id="spots" value="#{schedule.scheduleSpot}" var="schedulespot" controlsLocation="left" 
+                                             itemLabel="#{schedulespot.getSpot().getSpotName()}" itemValue="#{schedulespot.getSpot().getSpotId()}"/>  
+			  
+			   			<h:panelGrid id="eventDetailsButtons" columns="3">
+				            <p:commandButton type="reset" value="Limpar" />  
+				            <p:commandButton id="removeButton" value="Remove"  actionListener="#{schedule.removeEvent}" oncomplete="myschedule.update();eventDialog.hide();"/>
+				            <p:commandButton id="addButton"    value="Salve"   actionListener="#{schedule.addEvent}"    oncomplete="myschedule.update();eventDialog.hide();"/>
+
+			        	</h:panelGrid>        
+			        </h:panelGrid>  
+			    </p:dialog>  
+				
+				
+				
+				</h:form>
+				</div>
+			</h:form>
+			</div>
+		
+		</h:body>
+	</ui:define>
+
+</ui:composition>

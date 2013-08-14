@@ -1,0 +1,68 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/paginas//template.xhtml">
+	<ui:define name="conteudo">
+	<h:body>
+			
+
+			    <ui:include src="menu.xhtml"/>
+
+			<br />
+			<div id="round-border">
+			<h:form id="change" >
+				
+				<h3>
+					<h:outputText value="#{rotulo.MenuInitial_bemVindo}" />
+				</h3>
+				<div id="formulario">
+		    	
+			    	
+			        <p:panel  header="Change Login" >
+			            <h:panelGrid columns="2" >
+			            
+			            #{rotulo.menuLogin}                : <h:outputText value="${sessionScope.usuarioAutenticado.getLogin()}">
+			                                  </h:outputText>
+			            #{rotulo.menuOld_password}         : <h:inputSecret id="oldPassword" value="#{loginMBean.oldPassword}">
+			            						</h:inputSecret>
+			            #{rotulo.menuNew_password}         : <h:inputSecret id="newPassword" value="#{loginMBean.newPassword}">
+									            <f:validateLength
+																maximum="50"
+																minimum="4" />
+			            					   </h:inputSecret>
+			            #{rotulo.menuReenter_password} : <h:inputSecret id="rePassword"  value="#{loginMBean.rePassword}">
+			            		               <f:validateLength
+																maximum="50"
+																minimum="4" />
+			            
+			                                   </h:inputSecret>
+				        </h:panelGrid>     
+			            
+			            
+			            
+			            <p class="botoes">
+						<p:commandButton type="submit" id="#{rotulo.enviar}"  value="#{rotulo.enviar}" action="#{loginMBean.changeLogin}" />
+						</p> 
+			            
+			            <p:messages id="msgs"/>    
+			        </p:panel>
+			    	
+        
+				</div>
+			</h:form>
+			</div>
+		
+		</h:body>
+	</ui:define>
+
+</ui:composition>
