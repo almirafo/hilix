@@ -36,7 +36,7 @@
 			
 				    <p:growl id="messages" showDetail="true" />
 				
-				    <p:schedule id="schedule" value="#{schedule.eventModel}" view="month"  widgetVar="myschedule">
+				    <p:schedule id="schedule" value="#{schedule.eventModel}" view="month"  widgetVar="myschedule" language="pt">
 				 
 				        <p:ajax event="dateSelect"  listener="#{schedule.onDateSelect}"  update="eventDetails" oncomplete="eventDialog.show()" />
 				       

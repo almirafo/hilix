@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name="schedule_spots")
 @NamedQueries({
     @NamedQuery(name = "ScheduleSpot.All"              , query = "select u from ScheduleSpot u"),
-    @NamedQuery(name = "ScheduleSpot.AllBySchedule"    , query = "select u from ScheduleSpot u where u.schedule = :schedule"),
+    @NamedQuery(name = "ScheduleSpot.AllBySchedule"    , query = "select u from ScheduleSpot u where u.schedule = :schedule order by u.position"),
     @NamedQuery(name = "ScheduleSpot.removebySchedule" , query = "delete  from ScheduleSpot u where u.schedule = :schedule")
 			  })
 
