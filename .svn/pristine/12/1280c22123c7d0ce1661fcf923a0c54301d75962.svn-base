@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <style type="text/css">
+        .ui-datatable{
+            background-color: #b2d5d6;
+        }
+    </style>
+    
+    <f:view>
+    <h:head>
+        <title>Company</title>
+    </h:head>
+        <h:body > <!--style="background-image:url('../../resources/imagens/fundo.jpg');background-position: 50% 0%;background-repeat: no-repeat"    -->
+        
+             <h:outputLabel value="Companies"></h:outputLabel>
+             <h:form id="dataTableCompany">    
+                     <p:dataTable emptyMessage="No Data Found." scrollWidth="30" id="companies"   paginator="true" value="#{companyBean.listAll}" var="company"   rows="10" style="width:60%; font-family:Arial; font-size: 12px;"> 
+                   
+                     <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Id Company" />
+                    </f:facet>
+                         <h:outputText value="#{company.companyId}"/>
+                </p:column> 
+
+                
+                     <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Name" />
+                    </f:facet>
+                         <h:outputText value="#{company.name}"/>
+                </p:column> 
+
+                <p:column style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Edit" />
+                    </f:facet>
+                    <h:commandLink  actionListener="#{companyBean.load(company)}" immediate="true">
+                        
+                    	<h:graphicImage  url="/resources/imagens/botoes/Designcontest-Vintage-Pencil.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                    
+                </p:column> 
+
+                <p:column  style="width:40px; text-align: center" >
+                    <f:facet name="header">
+                    
+                    <h:outputText value="Remove" />
+                    </f:facet>
+                   
+                    <h:commandLink action="#{companyBean.remove(company)}" >
+                		<h:graphicImage url="/resources/imagens/botoes/Deleket-Button-Button-Close.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+                     
+                </p:dataTable>
+
+            
+                 
+            <p:panel header="Company"  rendered="true" style=" width: 60%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden id="edita" value="#{companyBean.edita}"/>
+                <h:inputHidden id="companyId" value="#{companyBean.companyId}"/>
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ;width: 100%">
+                
+                    
+                    Name  :  <p:inputText     value="#{companyBean.name}"       required="false"/>
+                
+            </h:panelGrid>
+
+            <h:panelGrid columns="2" >
+                    
+                <h:commandButton value="Save"  actionListener ="#{companyBean.save}"/>
+                <h:commandButton value="Reset" actionListener ="#{companyBean.reset}"/>
+
+            </h:panelGrid>   
+                
+            </p:panel>
+        </h:form>
+    </h:body>
+    </f:view>
+</html>

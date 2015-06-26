@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+ <h:head><title>Occupation</title></h:head>
+ <h:body>
+     <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel  value="Email : " /></td>
+                <td><p:inputText  id="email" value="#{loginBean.email}"/>
+                    
+                </td>
+             </tr>
+             <tr>
+                <td><h:outputLabel value="Password : " /></td>
+                <td><p:inputText  id="password" />
+                    
+                </td>
+             </tr>
+             <tr>
+                <td><p:commandButton id="login" value="Login" actionListener="#{loginBean.login}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset" actionListener="#{loginBean.reset}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+</h:body>
+</html> 

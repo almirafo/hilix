@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:c="http://java.sun.com/jsp/jstl/core">
+ <h:head><title>Occupation</title>
+ 
+ <script>
+ 
+ function setSite(site){
+	 
+	 
+ }
+ </script>
+ </h:head>
+ <h:body>
+             <h:form id="dataTablePortals">  
+                     
+ 
+	  <p:panel  header="Sites' Occupation" toggleable="false" toggleSpeed="500" style="font-size: 12px">
+							
+					  <table>
+                       <ui:repeat  value="#{siteBean.listAll}" var="site" varStatus="status">
+					    <h:panelGroup rendered="#{status.index mod 4 eq 0}">
+            			<tr></tr>
+      					</h:panelGroup>    
+					    <td>
+            		          
+            		        <p:poll interval="3" update="charts" /> 
+            		           
+	            		    <p:pieChart id="charts" 
+                                        value="#{chartBean.livePieOccupationSiteByLogin(site)}" 
+                                        title="#{site.name}" 
+                                        showDataLabels="true"
+	                            	    legendPosition="se"  
+	                            	    style="width:300px;height:200px;font-size: 12px"/>
+				             <p:commandButton value="Show detail by Portal" style="font-size: 12px" 
+                                 action="#{chartSitePortalBean.loadSite(site)}" ajax="false"/>
+				             
+				                       
+            			</td>
+            			
+            			</ui:repeat>
+                       </table>
+		</p:panel>
+			</h:form>
+
+
+
+</h:body>
+</html> 

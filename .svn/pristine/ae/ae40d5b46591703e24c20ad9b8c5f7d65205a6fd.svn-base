@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <h:outputLabel value="Occupation - SuppportComm" style="font-size: 18"/>
+    
+	    <h:form>
+	        <p:panel  header="Change Login" >
+	            <h:panelGrid columns="2" >
+	            Email                : <h:inputText   id="email"       value="#{loginBean.email}"/>
+	            Old Password         : <h:inputSecret id="oldPassword" value="#{loginBean.oldPassword}"/>
+	            New Password         : <h:inputSecret id="newPassword" value="#{loginBean.newPassword}"/>
+	            Reenter New Password : <h:inputSecret id="rePassword"  value="#{loginBean.rePassword}"/>
+	            </h:panelGrid>
+	            <p:commandButton id="login" style="font-size: smaller" value="access" action="#{loginBean.changeLogin}"/>
+	            <p:messages id="msgs"/>    
+	        </p:panel>
+	    </h:form>
+        
+        </h:body>
+
+</html>
+

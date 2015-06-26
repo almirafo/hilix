@@ -1,0 +1,7 @@
+#Import from database
+#Tue May 07 14:08:20 BRT 2013
+user=postgres
+vmargs=
+url=jdbc\:postgresql\://192.168.3.109/ocpdb
+password=postgres
+driver=org.postgresql.Driver

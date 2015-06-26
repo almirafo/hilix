@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13467933829460" configfile="/ocp/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1330" id="pf13684582553290" outlinks="pf13684582553291 pf13684583869793 pf13684744978740 pf13687112836631 pf13687112836632 pf13692303654480 pf13693216705610 pf13693216705611 pf13696786121580 pf13697689471132" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf13684582553292" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13684582553291" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="occupation.xhtml" x="338" y="562" id="pf13684583869794" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf13684583869793" path="/occupation.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="company.xhtml" x="338" y="946" id="pf13684744978741" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf13684744978740" path="/company.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="occupationPortalsByLogin.xhtml" x="338" y="1330" id="pf13687112836633" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf13687112836631" path="/occupationPortalsByLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="occupationtotalByLogin.xhtml" x="338" y="1714" id="pf13687112836634" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf13687112836632" path="/occupationtotalByLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="occupationSiteByLogin.xhtml" x="338" y="2098" id="pf13692303654481" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf13692303654480" path="/occupationSiteByLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="occupationSitePortalsByLogin.xhtml" x="338" y="2482" id="pf13693216705622" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf13693216705610" path="/occupationSitePortalsByLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="user.xhtml" id="pf13693216705623" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf13693216705611" path="/user.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="changeLogin.xhtml" id="pf13696786121591" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13696786121580" path="/changeLogin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf13697689471143" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13697689471132" path="/login.xhtml"/>
+  <links id="pf13684582553291" target="pf13684582553292" source="pf13684582553290" outcome="index"/>
+  <links id="pf13684583869793" target="pf13684583869794" source="pf13684582553290" outcome="chartPie"/>
+  <links id="pf13684744978740" target="pf13684744978741" source="pf13684582553290" outcome="company"/>
+  <links id="pf13687112836631" target="pf13687112836633" source="pf13684582553290" outcome="occupationChartPortal"/>
+  <links id="pf13687112836632" target="pf13687112836634" source="pf13684582553290" outcome="occupationChartTotal"/>
+  <links id="pf13692303654480" target="pf13692303654481" source="pf13684582553290" outcome="chartOccupationSiteByLogin"/>
+  <links id="pf13693216705610" target="pf13693216705622" source="pf13684582553290" outcome="occupationSitePortal"/>
+  <links id="pf13693216705611" target="pf13693216705623" source="pf13684582553290" outcome="user"/>
+  <links id="pf13696786121580" target="pf13696786121591" source="pf13684582553290" outcome="changeLogin"/>
+  <links id="pf13697689471132" target="pf13697689471143" source="pf13684582553290" outcome="login"/>
+</pageflow:Pageflow>

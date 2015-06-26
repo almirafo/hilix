@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>resources.application</base-name>
+			<var>app</var>
+		</resource-bundle>
+	</application>
+	<managed-bean>
+		<managed-bean-name>fileBean</managed-bean-name>
+		<managed-bean-class>br.FileBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>consultTest</managed-bean-name>
+		<managed-bean-class>br.ConsultTesteMB</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>com.supportcom.ocp.managedbean.LoginManagedBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>companyBean</managed-bean-name>
+		<managed-bean-class>com.supportcom.ocp.managedbean.CompanyManagedBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+
+<managed-bean>
+		<managed-bean-name>chartBean</managed-bean-name>
+		<managed-bean-class>com.supportcom.ocp.managedbean.ChartManagedBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+
+
+
+
+	<navigation-rule>
+	
+		<navigation-case>
+			<from-outcome>changeLogin</from-outcome>
+			<to-view-id>/changeLogin.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>	
+	
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>user</from-outcome>
+			<to-view-id>/user.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>chartPie</from-outcome>
+			<to-view-id>/occupation.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		<navigation-case>
+			<from-outcome>occupationChartPortal</from-outcome>
+			<to-view-id>/occupationPortalsByLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		
+		<navigation-case>
+			<from-outcome>occupationChartTotal</from-outcome>
+			<to-view-id>/occupationtotalByLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>occupationSitePortal</from-outcome>
+			<to-view-id>/occupationSitePortalsByLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		<navigation-case>
+			<from-outcome>company</from-outcome>
+			<to-view-id>/company.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>chartOccupationSiteByLogin</from-outcome>
+			<to-view-id>/occupationSiteByLogin.xhtml</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+
+</faces-config>

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+
+    
+    <style type="text/css">
+
+        li.ui-selectonemenu-item{
+            font-size:12px;
+            background-color: #ffcc00;
+        }
+        .ui-datatable{
+            background-color: #b2d5d6;
+        }
+    </style>
+    
+    <f:view>
+    <h:head>
+        
+        <title>Portals</title>
+    </h:head>
+        <h:body > 
+           <p:panel header="Portal">
+            <h:form id="tabela">
+                 <p:dataTable emptyMessage="No Data Found." scrollWidth="30" id="portals"   paginator="true" value="#{portalBean.listAll}" var="portal"   rows="10" style="width:60%; font-family:Arial; font-size: 12px;"> 
+
+
+				<p:column style="width:100px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Site" />
+                    </f:facet>
+                         <h:outputText value="#{portal.site.name}"/>
+                </p:column> 
+                   
+
+                <p:column style="width:100px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Name" />
+                    </f:facet>
+                         <h:outputText value="#{portal.name}"/>
+                </p:column> 
+                   
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Description" />
+                    </f:facet>
+                         <h:outputText value="#{portal.description}"/>
+                </p:column> 
+
+                <p:column style="width:200px;">
+                    <f:facet  name="header">
+                    <h:outputText value="Number" />
+                    </f:facet>
+                         <h:outputText value="#{portal.portalNumber }"/>
+                </p:column> 
+                
+          
+                     
+                <p:column style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Edit" />
+                    </f:facet>
+                    <h:commandLink  actionListener="#{portalBean.load(portal)}">
+                    <h:graphicImage url="/resources/imagens/botoes/Designcontest-Vintage-Pencil.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+
+                <p:column  style="width:40px;text-align: center">
+                    <f:facet name="header">
+                    <h:outputText value="Remove" />
+                    </f:facet>
+                    <h:commandLink  actionListener="#{portalBean.remove(portal)}"  >
+                    <h:graphicImage url="/resources/imagens/botoes/Deleket-Button-Button-Close.ico" width="20" height="20" />
+    				
+                    </h:commandLink>
+                </p:column> 
+
+                </p:dataTable>
+            </h:form>
+            
+            
+                         <h:form id="FormUser"> 
+                 
+            <p:panel header="Details"  rendered="true" style=" width: 60%; border: 0; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden  value="#{portalBean.portalId}" validatorMessage="#{portalBean.portalId}"/>
+                 
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ;width: 100%">
+                
+                    <p:outputLabel  value="Name :" />          <p:inputText     value="#{portalBean.name}"    />
+
+					<p:outputLabel  value="Description :" />  <p:inputText     value="#{portalBean.description}"    />
+                    
+                    <p:outputLabel  value="Number :" />       <p:inputText     value="#{portalBean.portalNumber}"    />
+                    
+                    <p:outputLabel  value="Site     :"/>   <p:selectOneMenu value="#{portalBean.site.siteId}" effect="fade"  style="font-size: smaller;font: smaller ;width: 200px;" >  
+						                                    <f:selectItem itemLabel="--Choose--" itemValue=""/>  
+						                                    <f:selectItems value="#{siteBean.listAll}" var="site" itemLabel="#{site.name}" itemValue="#{site.siteId}"/>  
+						                                   </p:selectOneMenu>  
+                
+                     
+                      
+             
+            </h:panelGrid>   
+                <h:commandButton value="Save"  action ="#{portalBean.save}"/>
+                <h:commandButton value="Reset" actionListener ="#{portalBean.reset}"/>
+               
+            </p:panel>
+                <p:messages severity="error" closable="true"/>
+        </h:form>
+            
+            
+            </p:panel>
+            
+    </h:body>
+    </f:view>
+</html>
+
