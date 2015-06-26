@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Vitrine2020">
+    <wb-module deploy-name="hilix">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <dependent-module archiveName="commons-fileupload-1.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/PrimeTeste/WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="java-output-path" value="/Vitrine2020/build/classes"/>
-        <property name="context-root" value="Vitrine2020"/>
+        <property name="java-output-path" value="/hilix/build/classes"/>
+        <property name="context-root" value="hilix"/>
     </wb-module>
 </project-modules>

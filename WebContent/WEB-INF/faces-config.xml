@@ -22,13 +22,13 @@
 	</application>
 	<managed-bean>
 		<managed-bean-name>languageController</managed-bean-name>
-		<managed-bean-class>br.com.supportcomm.freecall.managedbean.LanguageController</managed-bean-class>
+		<managed-bean-class>br.com.hilix.managedbean.LanguageController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
 
 	<lifecycle>
-		<phase-listener>br.com.supportcomm.freecall.system.ControleUsuarioListener</phase-listener>
+		<phase-listener>br.com.hilix.system.ControleUsuarioListener</phase-listener>
 	</lifecycle>
 	<navigation-rule>
 		<navigation-case>
