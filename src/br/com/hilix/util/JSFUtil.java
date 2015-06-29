@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.hilix.entity.UserAccess;
-import br.com.hilix.exception.FreeCallException;
+import br.com.hilix.exception.HilixException;
 
 /**
  * Classe de utilidades
@@ -302,9 +302,9 @@ public class JSFUtil {
 	 * 
 	 * @param iduserType
 	 * @return
-	 * @throws FreeCallException
+	 * @throws HilixException
 	 */
-	public List getListaPermissaoPadrao(Integer iduserType) throws FreeCallException {
+	public List getListaPermissaoPadrao(Integer iduserType) throws HilixException {
 		/*
 		 * List<Permissao> listaPermissao = new ArrayList<Permissao>(); XStream
 		 * xStream = new XStream(new DomDriver()); PermissoesPadrao

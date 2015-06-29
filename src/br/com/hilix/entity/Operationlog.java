@@ -9,12 +9,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQuery(name="Operationlog.findAll", query="SELECT o FROM Operationlog o")
 public class Operationlog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="OPERATIONLOG_OPERATIONLOGID_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OPERATIONLOG_OPERATIONLOGID_GENERATOR")
 	@Column(name="operationlog_id")
 	private Long operationlogId;
 

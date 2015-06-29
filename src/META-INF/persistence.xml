@@ -2,7 +2,7 @@
 <persistence version="2.0"
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="FreeCallJPA" >
+	<persistence-unit name="HilixJPA" >
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.hilix.entity.UserAccess</class>
 		<class>br.com.hilix.entity.UserType</class>
@@ -14,14 +14,10 @@
 			<property name="hibernate.connection.username" value="postgres" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.password" value="postgres" />
-			<!--  
-			<property name="hibernate.connection.url" value="jdbc:postgresql://192.168.3.108:5432/db_subscription_service" />
-			-->
-			<property name="hibernate.connection.url" value="jdbc:postgresql://10.21.45.13:5432/db_subscription_service" />
-			
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5433/hilix" />
 			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name = "hibernate.show_sql" value = "false" />
+            <property name = "hibernate.show_sql" value = "true" />
             <property name="current_session_context_class" value="thread"/>
             
 		</properties>

@@ -19,7 +19,7 @@ import org.primefaces.context.RequestContext;
 
 import br.com.hilix.entity.UserAccess;
 import br.com.hilix.entity.UserType;
-import br.com.hilix.exception.FreeCallException;
+import br.com.hilix.exception.HilixException;
 import br.com.hilix.service.user.UserService;
 import br.com.hilix.util.Constantes;
 import br.com.hilix.util.EmailUtil;
@@ -77,7 +77,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	 * 
 	 * @return
 	 */
-	public List<UserAccess> getListaUsuarios() throws FreeCallException {
+	public List<UserAccess> getListaUsuarios() throws HilixException {
 
 		List<UserAccess> lista = new ArrayList<UserAccess>();
 
@@ -96,9 +96,9 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	 * cadastro de campanha
 	 * 
 	 * @return List<Spot>
-	 * @throws FreeCallException
+	 * @throws HilixException
 	 */
-	public List<SelectItem> getListaUserTypes() throws FreeCallException {
+	public List<SelectItem> getListaUserTypes() throws HilixException {
 		List<SelectItem> lista = new ArrayList<SelectItem>();
 		List<UserType> listaUserType = userService.getUserTypeAll();
 		for (UserType c : listaUserType) {
@@ -139,7 +139,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 
 			this.passwordConfirmado = "";
 		}
-		catch (FreeCallException e) {
+		catch (HilixException e) {
 			e.printStackTrace();
 		}
 	}
@@ -147,7 +147,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	/**
 	 * Exclusão lógica, setar o campo status para inativo
 	 */
-	public void excluirUsuario() throws FreeCallException {
+	public void excluirUsuario() throws HilixException {
 		try {
 
 			this.getUsuarioSelecionado().setStatus(Constantes.STATUS_INATIVO.getValor());
