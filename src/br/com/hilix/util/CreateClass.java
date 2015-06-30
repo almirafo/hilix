@@ -14,7 +14,7 @@ public class CreateClass {
 	public static void main(String[] args) {
 		
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("FreeCallJPA");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("HilixJPA");
 		EntityManager em = emf.createEntityManager();
 
 		try {

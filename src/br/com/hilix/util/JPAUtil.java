@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 public class JPAUtil {
 	
 	// Use persistence.xml configuration
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("FreeCallJPA");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("HilixJPA");
 	
     public static EntityManager getEntityManager() {
         return emf.createEntityManager();
