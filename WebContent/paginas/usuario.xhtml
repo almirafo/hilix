@@ -89,35 +89,8 @@
 							<f:converter converterId="StatusConverter" />
 						</h:outputText>
 					</p:column>
-					
-					<!-- 
-					<p:column
-						style="width:96px"
-						headerText="#{rotulo.acoes}"
-						id="#{rotulo.idAcoes}">
-						<p:commandButton
-							onclick="modalExcluirUsuario.show()"
-							title="#{rotulo.remover}"
-							alt="#{rotulo.remover}"
-							icon="ui-icon ui-icon-close"
-							id="#{rotulo.excluirUsuario}">
-							<f:setPropertyActionListener
-								value="#{usuario}"
-								target="#{usuarioMBean.usuarioSelecionado}" />
-						</p:commandButton>
-						<p:commandButton
-							title="#{rotulo.alterar}"
-							alt="#{rotulo.alterar}"
-							update=":formSalvarUsuario"
-							onclick="modalSalvarUsuario.show()"
-							id="#{rotulo.alterarUsuario}"
-							icon="ui-icon-arrowrefresh-1-w">
-							<f:setPropertyActionListener
-								value="#{usuario}"
-								target="#{usuarioMBean.usuarioSelecionado}" />
-						</p:commandButton>						
-					</p:column>
-					 -->
+			
+
 				</p:dataTable>
 			</div>
 		</h:form>

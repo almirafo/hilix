@@ -61,6 +61,23 @@ public class UserAccess implements Serializable {
 	private UserType userType;
 	
 
+	@Column(name="nome")
+	private String nome;
+	
+	@Column(name="telefoneDeContato", length=11)
+	private String telefoneDeContato;
+	
+	@Column(name="nomedoSuperiorImediato",length=60)
+	private String nomedoSuperiorImediato;
+	
+	@Column(name="empresa",length=60)
+	private String empresa;
+	
+	@Column(name="cargo",length=60)
+	private String cargo;
+	
+	
+	
 	public UserAccess() {
 	}
 
@@ -110,6 +127,46 @@ public class UserAccess implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefoneDeContato() {
+		return telefoneDeContato;
+	}
+
+	public void setTelefoneDeContato(String telefoneDeContato) {
+		this.telefoneDeContato = telefoneDeContato;
+	}
+
+	public String getNomedoSuperiorImediato() {
+		return nomedoSuperiorImediato;
+	}
+
+	public void setNomedoSuperiorImediato(String nomedoSuperiorImediato) {
+		this.nomedoSuperiorImediato = nomedoSuperiorImediato;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 

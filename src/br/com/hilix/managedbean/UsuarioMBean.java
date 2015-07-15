@@ -203,8 +203,9 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 				else {
 					userService.mergeUserAccess(this.getUsuarioSelecionado());
 				}
-				EmailUtil.sendHTMLMail(super.getUsuarioAutenticado().getEmail(), this.getUsuarioSelecionado().getEmail(), this.getUsuarioSelecionado().getLogin(), "Usuário Chamadas Patrocinadas",
-						super.getEmailCadastroUsuario(this.getUsuarioSelecionado().getLogin(), this.getUsuarioSelecionado().getPassword()));
+				/*EmailUtil.sendHTMLMail(super.getUsuarioAutenticado().getEmail(), this.getUsuarioSelecionado().getEmail(), this.getUsuarioSelecionado().getLogin(), "Usuário Chamadas Patrocinadas",
+						super.getEmailCadastroUsuario(this.getUsuarioSelecionado().getLogin(), this.getUsuarioSelecionado().getPassword()));*/
+
 				super.addInfo(super.getMessage("usuarioSalvo"));
 				saveHistory(super.getMessage("usuarioHistorico") +" -- "  + this.getUsuarioSelecionado().getLogin(), null, null );
 				this.iniciar();
@@ -242,7 +243,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 
 	public void edit(UserAccess user){
 		setUsuarioSelecionado(user);
-		//this.usuarioSelecionado = user;
+		this.usuarioSelecionado = user;
 	}
 	
 	
