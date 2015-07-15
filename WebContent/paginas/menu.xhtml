@@ -17,12 +17,28 @@
 
                 <p:menubar autoDisplay="false" >  
                        
-                        <p:submenu label="Configure" icon="ui-icon-note">  
-                       <!--      <p:menuitem  value="usuario"      url="/paginas/user.xhtml" />
+                       <!-- <p:submenu label="Configure" icon="ui-icon-note">  
+                             <p:menuitem  value="usuario"      url="/paginas/user.xhtml" />
                             <p:menuitem  value="Spot"         />
-                         -->    
+                             
                             <p:menuitem  value="Agenda de Ofertas" url="/paginas/scheduleSpot.xhtml"   />
                         </p:submenu>  
+					    -->
+					    
+					    <p:submenu label="Security management">
+					    	<p:menuitem  value="usuario"      url="/paginas/user.xhtml" title="Define o usuário e o grupo que pertence" />
+					    	<p:menuitem  value="grupos"              title="Define o nome do grupo"   />
+					    	<p:menuitem  value="grupos x módulos"    title="Define que grupos pode acessar quais módulos"   />
+					    </p:submenu> 
+					    <p:submenu label="Enterprise asset management"  />
+					    <p:submenu label="People management" />
+					    <p:submenu label="Enterprise financial management" />
+					    <p:submenu label="Task Management" />
+					    <p:submenu label="Hilix control services" />
+					    <p:submenu label="Documentation control tool" /> 
+					    <p:submenu label="Land management" />
+					    <p:submenu label="Sales qualification tool" />
+					    <p:submenu label="Sales Management" />
 					    
                         <p:menuitem  value="Change Login"   url="/paginas/changeLogintela.xhtml"/> 
                         <p:menuitem  value="Logout"        action="#{loginMBean.logout}"/>    
