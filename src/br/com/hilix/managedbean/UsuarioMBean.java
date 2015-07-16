@@ -119,8 +119,8 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	 */
 	@PostConstruct
 	public String iniciarUsuario() throws IOException {
-		//usuarioSelecionado = new UserAccess();
-		//usuarioSelecionado.setUserType(new UserType());
+		usuarioSelecionado = new UserAccess();
+		usuarioSelecionado.setUserType(new UserType());
 
 		this.passwordConfirmado = "";
 

@@ -7,6 +7,9 @@
 		<class>br.com.hilix.entity.UserAccess</class>
 		<class>br.com.hilix.entity.UserType</class>
 		<class>br.com.hilix.entity.Operationlog</class>
+		<class>br.com.hilix.entity.Canva</class>		
+		<class>br.com.hilix.entity.Group</class>
+		<class>br.com.hilix.entity.Module</class>
 		
 		
 		<properties>
