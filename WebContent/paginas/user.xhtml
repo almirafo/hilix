@@ -108,13 +108,13 @@
                 
                 <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
                 
-                    #{rotulo.login}                  :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.login}"    />
-                    #{rotulo.email}                  :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.email}"                  size="60" />
-                    #{rotulo.nome}                   :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.nome}"                   size="60" />
-                    #{rotulo.telefoneDeContato}      :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.telefoneDeContato}"      size="11" />
-                    #{rotulo.nomedoSuperiorImediato} :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.nomedoSuperiorImediato}" size="60" />
-                    #{rotulo.empresa}                :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.empresa}"                size="60" />
-                    #{rotulo.cargo}                  :  <p:inputText     value="#{usuarioMBean.usuarioSelecionado.cargo}"                  size="60" />
+                    #{rotulo.login}                  :  <p:inputText  id="login"                    value="#{usuarioMBean.usuarioSelecionado.login}"    />
+                    #{rotulo.email}                  :  <p:inputText  id="email"                    value="#{usuarioMBean.usuarioSelecionado.email}"                  size="60" />
+                    #{rotulo.nome}                   :  <p:inputText  id="nome"                     value="#{usuarioMBean.usuarioSelecionado.nome}"                   size="60" />
+                    #{rotulo.telefoneDeContato}      :  <p:inputText  id="telefoneDeContato"        value="#{usuarioMBean.usuarioSelecionado.telefoneDeContato}"      size="11" />
+                    #{rotulo.nomedoSuperiorImediato} :  <p:inputText  id="nomedoSuperiorImediato"   value="#{usuarioMBean.usuarioSelecionado.nomedoSuperiorImediato}" size="60" />
+                    #{rotulo.empresa}                :  <p:inputText  id="empresa"                  value="#{usuarioMBean.usuarioSelecionado.empresa}"                size="60" />
+                    #{rotulo.cargo}                  :  <p:inputText  id="cargo"                    value="#{usuarioMBean.usuarioSelecionado.cargo}"                  size="60" />
                     #{rotulo.tipo} #{rotulo.usuario}   : <h:selectOneListbox
 									size="1"
 									disabled="#{usuarioMBean.desabilitarTipoUsuario}"

@@ -8,7 +8,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
+
 
 
 
@@ -32,7 +34,7 @@ import br.com.hilix.util.JSFUtil;
  * 
  */
 @ManagedBean(name="usuarioMBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	/**
 	 * 
@@ -50,6 +52,14 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	}
 
 	private String passwordConfirmado;
+	private String login;
+	private String email;
+	private String nome;
+	private String telefoneDeContato;
+	private String nomedoSuperiorImediato;
+	private String empresa;
+	private String cargo;
+
 	
 	private final static String[] status;
 	private final static Integer[] statusValue;
@@ -273,6 +283,82 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 
 	public SelectItem[] getStatusOptions() {
 		return statusOptions;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefoneDeContato() {
+		return telefoneDeContato;
+	}
+
+	public void setTelefoneDeContato(String telefoneDeContato) {
+		this.telefoneDeContato = telefoneDeContato;
+	}
+
+	public String getNomedoSuperiorImediato() {
+		return nomedoSuperiorImediato;
+	}
+
+	public void setNomedoSuperiorImediato(String nomedoSuperiorImediato) {
+		this.nomedoSuperiorImediato = nomedoSuperiorImediato;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public static String[] getStatus() {
+		return status;
+	}
+
+	public static Integer[] getStatusvalue() {
+		return statusValue;
+	}
+
+	public void setStatusOptions(SelectItem[] statusOptions) {
+		this.statusOptions = statusOptions;
 	}
 	
 
