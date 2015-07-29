@@ -12,6 +12,7 @@ import org.hibernate.annotations.Index;
 /**
  * 
  * @author almir
+ * S
  *
  */
 @Entity(name="group")
