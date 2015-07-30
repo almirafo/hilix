@@ -31,6 +31,22 @@ public class Group implements Serializable{
     
     @Column(name="name_group")
     private String nameGroup;
+
+	public Long getIdgroup() {
+		return idgroup;
+	}
+
+	public void setIdgroup(Long idgroup) {
+		this.idgroup = idgroup;
+	}
+
+	public String getNameGroup() {
+		return nameGroup;
+	}
+
+	public void setNameGroup(String nameGroup) {
+		this.nameGroup = nameGroup;
+	}
     
 
 
