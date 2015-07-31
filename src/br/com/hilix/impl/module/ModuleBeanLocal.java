@@ -12,11 +12,5 @@ import br.com.hilix.entity.Module;
 
 public interface ModuleBeanLocal
 {
-
-    /**
-     * @generated DT_ID=none
-     */
-    Object queryByRange(String jpqlStmt, int firstResult, int maxResults);
-
-
+    
 }

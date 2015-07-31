@@ -25,5 +25,21 @@ public class Module implements  Serializable{
     private Long idmodule;
 	
 	private String nameModule;
+
+	public Long getIdmodule() {
+		return idmodule;
+	}
+
+	public void setIdmodule(Long idmodule) {
+		this.idmodule = idmodule;
+	}
+
+	public String getNameModule() {
+		return nameModule;
+	}
+
+	public void setNameModule(String nameModule) {
+		this.nameModule = nameModule;
+	}
 	
 }
