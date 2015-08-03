@@ -12,5 +12,5 @@ import br.com.hilix.entity.Module;
 
 public interface ModuleBeanLocal
 {
-    
+	public List<Module> getByName(String name);
 }

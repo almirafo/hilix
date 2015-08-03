@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/paginas//template.xhtml">
+	
+      <ui:define name="conteudo">
+      	<ui:include src="menu.xhtml"/>
+            <h:form id="tabela">
+      	<div id="secondary-menu">
+				<ul>
+					<li><h:commandLink
+							value="#{rotulo.listar} #{rotulo.grupos}"
+							actionListener="#{grupoMBean.iniciar}"
+							id="#{rotulo.listarUsuario}" /></li>
+					<li><p:commandLink
+							value="#{rotulo.novo} #{rotulo.grupo}"
+							action="#{grupoMBean.iniciar}"
+							id="#{rotulo.novoUsuario}"
+							oncomplete="modalSalvarUsuario.show();"
+							update=":formSalvarUsuario" /></li>
+				</ul>
+			</div>
+            <div id="round-border">
+                <h3>
+					<h:outputText value="#{rotulo.listarTodosUsuarios}" />
+				</h3>
+					<p:dataTable
+						var="grupo"
+						value="#{groupMBean.listaGrupos}"
+						id="grupoList"
+						widgetVar="grupoList"
+						paginator="true"
+						rows="10"
+						selectionMode="single"
+						selection="#{grupoMBean.grupoSelecionado}"
+						rowKey="#{grupo.idUserAccess}"
+						emptyMessage="#{rotulo.naoHaUsuarios}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15">
+						<p:ajax event="rowSelect" update=":formSalvarGrupo" oncomplete="modalSalvarGrupo.show()" /> 
+
+					<p:column
+						headerText="Id"
+						styleClass="text-align:center;"
+						width="0"
+						>
+						<h:outputText value="#{grupo.idUserAccess}" />
+					</p:column>
+
+
+					
+					<p:column
+						headerText="#{rotulo.login}"
+						styleClass="text-align:center;"
+						sortBy="#{grupo.login}"
+						filterBy="#{grupo.login}">
+						<h:outputText value="#{grupo.login}" />
+					</p:column>
+					<p:column
+						headerText="#{rotulo.status}"
+						styleClass="text-align:center;"
+						sortBy="#{grupo.status}"
+						filterBy="#{grupo.status}"
+						filterOptions="#{grupoMBean.statusOptions}">
+						<h:outputText value="#{grupo.status}">
+							<f:converter converterId="StatusConverter" />
+						</h:outputText>
+					</p:column>
+					
+					
+				</p:dataTable>
+                </div>
+            </h:form>
+            
+   		<p:dialog
+			widgetVar="modalSalvarUsuario"
+			modal="true"
+			width="570"
+			resizable="false"
+			height="600"
+			onCloseUpdate=":formUsuario:messages"
+			onHide="labels();">
+			
+			         
+           <h:form id="formSalvarUsuario"> 
+             <div id="round-border">     
+            <p:panel header="#{rotulo.grupo}"  rendered="true" style=" width: 55%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+                <h:inputHidden  value="#{groupMBean.groupSelecionado.idgroup}" />
+                
+                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
+                    #{rotulo.name} : <p:inputText  id="name"  value="#{groupMBean.groupSelecionado.nameGroup}"                   size="60" />
+            	</h:panelGrid>
+            		<!-- os comandos de botões só libera se o usuário tiver direito -->   
+					<p class="botoes">
+						<p:commandButton
+							update=":formSalvarUsuario:messageSalvar,:formUsuario"
+							id="#{rotulo.enviar}"
+							action="#{grupoMBean.salvarUsuario}"
+							ajax="false"
+							oncomplete="handleSalvarRequest(xhr, status, args)"
+							value="#{rotulo.enviar}" />
+						<p:commandButton
+							type="reset"
+							value="#{rotulo.limpar}"
+							id="#{rotulo.limpar}" />
+						<p:commandButton value="#{rotulo.excluir}" rendered="${grupoMBean.grupoSelecionado.login!= null}" actionListener ="#{grupoMBean.excluirUsuario}"  ajax="false"/>	
+					</p>    
+               		<!--  -->
+            </p:panel>
+            </div>
+            <p:messages severity="error" closable="true"/>
+                      
+        </h:form>  
+        </p:dialog>    
+      </ui:define>
+</ui:composition>
