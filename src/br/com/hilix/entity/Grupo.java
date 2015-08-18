@@ -15,8 +15,8 @@ import org.hibernate.annotations.Index;
  * S
  *
  */
-@Entity(name="group")
-public class Group implements Serializable{
+@Entity(name="Usersgroup")
+public class Grupo implements Serializable{
 
     /**
 	 * 
@@ -27,17 +27,17 @@ public class Group implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_group", unique = true, nullable = false)
     @Index(name="idx_group")
-    private Long idgroup;
+    private Long idGroup;
     
     @Column(name="name_group")
     private String nameGroup;
 
-	public Long getIdgroup() {
-		return idgroup;
+	public Long getIdGroup() {
+		return idGroup;
 	}
 
-	public void setIdgroup(Long idgroup) {
-		this.idgroup = idgroup;
+	public void setIdGroup(Long idGroup) {
+		this.idGroup = idGroup;
 	}
 
 	public String getNameGroup() {

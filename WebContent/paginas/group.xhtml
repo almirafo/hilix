@@ -20,7 +20,7 @@
 							
 							<li><p:commandLink
 							value="#{rotulo.groupNew}"
-							action="#{grupoMBean.iniciar}"
+							action="#{grupoMBean.iniciarGrupo}"
 							id="groupNew"
 							oncomplete="modalSalvarGrupo.show();"
 							update=":formSalvarGrupo" /></li>
@@ -71,17 +71,17 @@
            <h:form id="formSalvarGrupo"> 
              <div id="round-border">     
             <p:panel header="#{rotulo.grupo}"  rendered="true" style=" width: 55%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
-                <h:inputHidden  value="#{groupMBean.groupSelecionado.idGroup}" />
+                 <h:inputHidden  value="#{groupMBean.idGroup}" />
                 
                 <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
-                    #{rotulo.name} : <p:inputText  id="name"  value="#{groupMBean.groupSelecionado.nameGroup}"                   size="60" />
+                    #{rotulo.nameGroup} : <p:inputText  id="name"  value="#{groupMBean.nameGroup}" size="60" />
             	</h:panelGrid>
             		<!-- os comandos de botões só libera se o usuário tiver direito -->   
 					<p class="botoes">
 						<p:commandButton
-							update=":formSalvarUsuario:messageSalvar,:formUsuario"
+							update=":formSalvarGrupo:messageSalvar,:formGrupo"
 							id="#{rotulo.enviar}"
-							action="#{grupoMBean.salvarGrupo}"
+							action="#{groupMBean.salvarGrupo}"
 							ajax="false"
 							oncomplete="handleSalvarRequest(xhr, status, args)"
 							value="#{rotulo.enviar}" />
@@ -89,7 +89,7 @@
 							type="reset"
 							value="#{rotulo.limpar}"
 							id="#{rotulo.limpar}" />
-						<p:commandButton value="#{rotulo.excluir}" rendered="${grupoMBean.grupoSelecionado.login!= null}" actionListener ="#{grupoMBean.excluirGrupo}"  ajax="false"/>	
+						<p:commandButton value="#{rotulo.excluir}" rendered="${grupoMBean.grupoSelecionado != null}" actionListener ="#{grupoMBean.excluirGrupo}"  ajax="false"/>	
 					</p>    
                		
             </p:panel>

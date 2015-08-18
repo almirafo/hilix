@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.context.RequestContext;
 
-import br.com.hilix.entity.Group;
+import br.com.hilix.entity.Grupo;
 import br.com.hilix.exception.HilixException;
 import br.com.hilix.service.group.GroupService;
 
@@ -28,17 +28,17 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Group groupSelecionado ;
+	private Grupo groupSelecionado ;
 	
-	public Group getGrupoSelecionado() {
+	public Grupo getGrupoSelecionado() {
 		return groupSelecionado;
 	}
 
-	public void setUsuarioSelecionado(Group groupSelecionado) {
+	public void setUsuarioSelecionado(Grupo groupSelecionado) {
 		this.groupSelecionado = groupSelecionado;
 	}
-
-	private String name;
+	private long idGroup;
+	private String nameGroup;
 	
 	private GroupService groupService = new GroupService();
 	
@@ -51,24 +51,23 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	 * 
 	 * @return
 	 */
-	public List<Group> getListaGrupos() throws HilixException {
-		List<Group> lista = new ArrayList<Group>();
+	public List<Grupo> getListaGrupos() throws HilixException {
+		List<Grupo> lista = new ArrayList<Grupo>();
 		return lista;
 	}
 
-
-	public GroupMBean() {
-
-	}
-
 	/**
-	 * Chamada inicial da pagina de Usuarios
+	 * Chamada inicial da pagina de Grupo
 	 * 
 	 * @throws IOException
 	 */
 	@PostConstruct
-	public String iniciarUsuario() throws IOException {
-		groupSelecionado = new Group();
+	public String iniciarGrupo() throws IOException {
+		groupSelecionado = new Grupo();
+		groupSelecionado.setIdGroup(0l);
+		groupSelecionado.setNameGroup("");
+		setIdGroup(0l);
+		setNameGroup("");
 		return "group";
 	}
 
@@ -78,10 +77,14 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	public void iniciar() {
 		try {
 			this.getListaGrupos();
-			groupSelecionado = new Group();
+			this.groupSelecionado = new Grupo();
+			this.groupSelecionado.setIdGroup(0l);
+			this.groupSelecionado.setNameGroup("");
+			this.setIdGroup(0l);
+			this.setNameGroup("");
 		}
 		catch (HilixException e) {
-			e.printStackTrace();
+			super.addInfo(e.getMessage());
 		}
 	}
 
@@ -92,11 +95,10 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 		try {
 			groupService.remove(this.getGroupSelecionado());
 			super.addInfo(super.getMessage("groupExcluido"));
-			saveHistory(super.getMessage("groupDeletado") +" -- "  + this.getGroupSelecionado().getNameGroup(), null, null );
 			this.iniciar();
 		}
 		catch (Exception e) {
-			
+			super.addInfo(e.getMessage());
 		}
 	}
 
@@ -104,16 +106,18 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	 * Método salvar/alterar o objeto Utiliza o requestContext para fechar ou
 	 * não, casa haja problema, o modal de cadastro
 	 */
-	public void salvarGrupo() {
+	public void salvarGrupo() throws HilixException {
 		RequestContext context = RequestContext.getCurrentInstance();
+		this.groupSelecionado = new Grupo();
+		this.groupSelecionado.setNameGroup(this.nameGroup.toString());
+		this.groupSelecionado.setIdGroup(this.idGroup);
 		super.setSucesso(true);
-
 		try {
-			if (super.isNullOrBlank(this.getGrupoSelecionado().getIdgroup())) {
-
+			if (super.isNullOrBlank(this.getGrupoSelecionado().getIdGroup())) {
+				groupService.save(this.getGrupoSelecionado());
 			}
 			else {
-				if ( this.getGrupoSelecionado().getIdgroup()==0) {
+				if ( this.getGrupoSelecionado().getIdGroup()==0 ||this.getGrupoSelecionado().getIdGroup() ==null) {
 					// Colocado essa condição pois não pode permitir cadastrar um novo group com Login Existente
 					if (!groupService.getByName(this.getGrupoSelecionado().getNameGroup()).isEmpty()) {
 						super.addError(super.getMessage("grupoExistente"));
@@ -127,52 +131,47 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 					groupService.update(this.getGrupoSelecionado());
 				}
 				super.addInfo(super.getMessage("groupSalvo"));
-				saveHistory(super.getMessage("groupHistorico") +" -- "  + this.getGrupoSelecionado().getNameGroup(), null, null );
 				this.iniciar();
 				
 			}
 		}
 		catch (Exception e) {
 			super.setSucesso(false);
+			super.addInfo(e.getMessage());
 		}
 		context.addCallbackParam("sucesso", super.isSucesso());
 	}
 
 
-	public void edit(Group group){
+	public void edit(Grupo group){
 		setUsuarioSelecionado(group);
 		this.groupSelecionado = group;
 	}
-	
-	
-	public void saveHistory(String action, Long idCampanha, Long idSpot) {
 
-		try {
-			
-		}
-		catch (Exception e) {
-			
-		}
 
-	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Group getGroupSelecionado() {
+	public Grupo getGroupSelecionado() {
 		return groupSelecionado;
 	}
 
-	public void setGroupSelecionado(Group groupSelecionado) {
+	public void setGroupSelecionado(Grupo groupSelecionado) {
 		this.groupSelecionado = groupSelecionado;
 	}
 
+	public String getNameGroup() {
+		return nameGroup;
+	}
 
-	
+	public void setNameGroup(String nameGroup) {
+		this.nameGroup = nameGroup;
+	}
+
+	public long getIdGroup() {
+		return idGroup;
+	}
+
+	public void setIdGroup(long idGroup) {
+		this.idGroup = idGroup;
+	}
 
 }

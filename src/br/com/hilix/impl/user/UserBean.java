@@ -1,5 +1,6 @@
 package br.com.hilix.impl.user;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,10 +18,14 @@ import br.com.hilix.util.JPAUtil;
  */
 
 public class UserBean
-        implements UserBeanLocal
+        implements UserBeanLocal, Serializable
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * @generated DT_ID=none
      */
    
