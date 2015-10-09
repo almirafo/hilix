@@ -53,6 +53,7 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	 */
 	public List<Grupo> getListaGrupos() throws HilixException {
 		List<Grupo> lista = new ArrayList<Grupo>();
+		lista = groupService.findAll();
 		return lista;
 	}
 
@@ -110,7 +111,8 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 		RequestContext context = RequestContext.getCurrentInstance();
 		this.groupSelecionado = new Grupo();
 		this.groupSelecionado.setNameGroup(this.nameGroup.toString());
-		this.groupSelecionado.setIdGroup(this.idGroup);
+		if (this.idGroup!=0)
+			this.groupSelecionado.setIdGroup(this.idGroup);
 		super.setSucesso(true);
 		try {
 			if (super.isNullOrBlank(this.getGrupoSelecionado().getIdGroup())) {

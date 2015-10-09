@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
  
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -19,18 +20,24 @@ public class GenericDAO<PK, T> {
     }
  
     public void save(T entity) {
+    	entityManager.getTransaction().begin();
         entityManager.persist(entity);
+        entityManager.getTransaction().commit();
+        
     }
  
     public void update(T entity) {
+    	entityManager.getTransaction().begin();
         entityManager.merge(entity);
+        entityManager.getTransaction().commit();
     }
  
     public void delete(T entity) {
         entityManager.remove(entity);
     }
  
-    public List<T> findAll() {
+    @SuppressWarnings("unchecked")
+	public List<T> findAll() {
         return entityManager.createQuery(("FROM " + getTypeClass().getName()))
                 .getResultList();
     }

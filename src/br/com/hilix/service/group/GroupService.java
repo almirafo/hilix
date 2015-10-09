@@ -17,9 +17,7 @@ public class GroupService  {
 		}
 		public void save(Grupo group){
 			
-			em.getTransaction().begin();
 			dao.save(group);
-			em.getTransaction().commit();
 		}
 		
 		public void remove(Grupo group){
@@ -40,5 +38,9 @@ public class GroupService  {
 		
 		public List<Grupo> getByName(String name){
 			return dao.getByName(name);
+		}
+		
+		public List<Grupo> findAll(){
+			return dao.findAll();
 		}
 }
