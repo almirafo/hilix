@@ -21,15 +21,15 @@ public class GroupService  {
 		}
 		
 		public void remove(Grupo group){
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			dao.delete(group);
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 		}
 		
 	    public void update(Grupo group) {
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			dao.update(group);
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 	    }
 		
 		public Grupo find(long pk){

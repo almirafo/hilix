@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 import br.com.hilix.entity.Grupo;
 import br.com.hilix.exception.HilixException;
@@ -29,20 +30,18 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Grupo groupSelecionado ;
-	
-	public Grupo getGrupoSelecionado() {
-		return groupSelecionado;
-	}
-
-	public void setUsuarioSelecionado(Grupo groupSelecionado) {
-		this.groupSelecionado = groupSelecionado;
-	}
 	private long idGroup;
 	private String nameGroup;
 	
+
+
+	
 	private GroupService groupService = new GroupService();
 	
-	
+    @PostConstruct
+    public void init() {
+		List<Grupo> lista = new ArrayList<Grupo>();
+    }
 
 
 	/**
@@ -62,14 +61,14 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	 * 
 	 * @throws IOException
 	 */
-	@PostConstruct
-	public String iniciarGrupo() throws IOException {
+	
+	public void iniciarGrupo() throws IOException {
 		groupSelecionado = new Grupo();
 		groupSelecionado.setIdGroup(0l);
 		groupSelecionado.setNameGroup("");
 		setIdGroup(0l);
 		setNameGroup("");
-		return "group";
+		
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 			this.setIdGroup(0l);
 			this.setNameGroup("");
 		}
-		catch (HilixException e) {
+		catch (Exception e) {
 			super.addInfo(e.getMessage());
 		}
 	}
@@ -115,22 +114,22 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 			this.groupSelecionado.setIdGroup(this.idGroup);
 		super.setSucesso(true);
 		try {
-			if (super.isNullOrBlank(this.getGrupoSelecionado().getIdGroup())) {
-				groupService.save(this.getGrupoSelecionado());
+			if (super.isNullOrBlank(this.getGroupSelecionado().getIdGroup())) {
+				groupService.save(this.getGroupSelecionado());
 			}
 			else {
-				if ( this.getGrupoSelecionado().getIdGroup()==0 ||this.getGrupoSelecionado().getIdGroup() ==null) {
+				if ( this.getGroupSelecionado().getIdGroup()==0 ||this.getGroupSelecionado().getIdGroup() ==null) {
 					// Colocado essa condição pois não pode permitir cadastrar um novo group com Login Existente
-					if (!groupService.getByName(this.getGrupoSelecionado().getNameGroup()).isEmpty()) {
+					if (!groupService.getByName(this.getGroupSelecionado().getNameGroup()).isEmpty()) {
 						super.addError(super.getMessage("grupoExistente"));
 						super.setSucesso(false);
 						return;
 					}
 					
-					groupService.save(this.getGrupoSelecionado());
+					groupService.save(this.getGroupSelecionado());
 				}
 				else {
-					groupService.update(this.getGrupoSelecionado());
+					groupService.update(this.getGroupSelecionado());
 				}
 				super.addInfo(super.getMessage("groupSalvo"));
 				this.iniciar();
@@ -145,20 +144,20 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	}
 
 
-	public void edit(Grupo group){
-		setUsuarioSelecionado(group);
-		this.groupSelecionado = group;
-	}
-
-
-
 	public Grupo getGroupSelecionado() {
 		return groupSelecionado;
 	}
 
-	public void setGroupSelecionado(Grupo groupSelecionado) {
-		this.groupSelecionado = groupSelecionado;
-	}
+
+	 public void onRowSelect(SelectEvent event) {
+		 	if (event.getObject() instanceof Grupo){
+		 		Grupo grupo = (Grupo)event.getObject();
+		 		this.idGroup = grupo.getIdGroup();
+		 		this.nameGroup =  grupo.getNameGroup();
+		 	}
+	    }
+	
+	 
 
 	public String getNameGroup() {
 		return nameGroup;

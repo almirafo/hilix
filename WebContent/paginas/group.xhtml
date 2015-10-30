@@ -20,7 +20,7 @@
 							actionListener="#{grupoMBean.iniciar}"
 							id="listarGrupos" /></li>
 							
-							<li><p:commandLink
+					<li><p:commandLink
 							value="#{rotulo.groupNew}"
 							action="#{grupoMBean.iniciarGrupo}"
 							id="groupNew"
@@ -30,32 +30,39 @@
 				</ul>
 			</div>
             <div id="round-border">
-                <h3>
-					<h:outputText value="#{rotulo.listarTodosGrupos}" />
-				</h3>
-					<p:dataTable
-						var="grupo"
-						value="#{groupMBean.listaGrupos}"
-						id="grupoList"
-						widgetVar="grupoList"
-						paginator="true"
-						rows="10"
-						selectionMode="single"
-						selection="#{grupoMBean.grupoSelecionado}"
-						rowKey="#{grupo.idGroup}"
-						emptyMessage="#{rotulo.NoGroups}"
-						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,10,15">
-						<p:ajax event="rowSelect" update=":formSalvarGrupo" oncomplete="modalSalvarGrupo.show()" /> 
-
-					<p:column
+				
+				    <p:dataTable    id="grupoList" 
+				                    var="grupo" 
+								    value="#{groupMBean.listaGrupos}" 
+								    selectionMode="single" 
+								     
+								    rowKey="#{grupo.idGroup}" 						
+								    rows="10"
+								    
+								    emptyMessage="#{rotulo.NoGroups}"
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									rowsPerPageTemplate="5,10,15">
+				    
+				        <f:facet name="header">
+			                <h3>
+								<h:outputText value="#{rotulo.listarTodosGrupos}" />
+							</h3>
+				        </f:facet>
+				        <p:ajax event="rowSelect" listener="#{groupMBean.onRowSelect}" update=":formSalvarGrupo" oncomplete="modalSalvarGrupo.show()" />
+				        <p:column headerText="Id" rendered="false">
+				            <h:outputText value="idGroup" />
+				        </p:column>
+						<p:column
 						headerText="#{rotulo.login}"
 						styleClass="text-align:center;"
 						sortBy="#{grupo.nameGroup}"
 						filterBy="#{grupo.nameGroup}">
 						<h:outputText value="#{grupo.nameGroup}" />
-					</p:column>
-				</p:dataTable>
+						</p:column>
+					</p:dataTable>
+				
+				
+
                 </div>
             </h:form>
 
@@ -67,8 +74,9 @@
 					resizable="false"
 					height="600"
 					onCloseUpdate=":formGrupo:messages"
+					
 					onHide="labels();"
-					showEffect="explode" hideEffect="bounce">
+					>
 					
 			         
 	           <h:form id="formSalvarGrupo"> 
