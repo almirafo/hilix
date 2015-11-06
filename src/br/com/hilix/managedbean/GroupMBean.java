@@ -95,7 +95,7 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 		try {
 			groupService.remove(this.getGroupSelecionado());
 			super.addInfo(super.getMessage("groupExcluido"));
-			this.iniciar();
+			
 		}
 		catch (Exception e) {
 			super.addInfo(e.getMessage());
@@ -132,7 +132,7 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 					groupService.update(this.getGroupSelecionado());
 				}
 				super.addInfo(super.getMessage("groupSalvo"));
-				this.iniciar();
+				
 				
 			}
 		}
@@ -148,12 +148,18 @@ public class GroupMBean extends AbstractManagedBean  implements Serializable {
 		return groupSelecionado;
 	}
 
-
+     public void reset(){
+    	 this.iniciar();
+    	 RequestContext.getCurrentInstance().reset("formSalvarGrupo");
+     }
 	 public void onRowSelect(SelectEvent event) {
 		 	if (event.getObject() instanceof Grupo){
 		 		Grupo grupo = (Grupo)event.getObject();
 		 		this.idGroup = grupo.getIdGroup();
 		 		this.nameGroup =  grupo.getNameGroup();
+		 		this.groupSelecionado = new Grupo();
+		 		this.groupSelecionado.setIdGroup(this.idGroup);
+		 		this.groupSelecionado.setNameGroup(this.nameGroup);
 		 	}
 	    }
 	

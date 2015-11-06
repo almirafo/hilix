@@ -17,14 +17,16 @@
 				<ul>
 					<li><h:commandLink
 							value="#{rotulo.listar} #{rotulo.groupTitle}"
-							actionListener="#{grupoMBean.iniciar}"
+							actionListener="#{groupMBean.iniciar}"
+							ajax="false"
 							id="listarGrupos" /></li>
 							
 					<li><p:commandLink
 							value="#{rotulo.groupNew}"
-							action="#{grupoMBean.iniciarGrupo}"
+							actionListener="#{groupMBean.iniciarGrupo}"
 							id="groupNew"
 							oncomplete="modalSalvarGrupo.show();"
+							ajax="true"
 							update=":formSalvarGrupo" /></li>
 					
 				</ul>
@@ -96,8 +98,8 @@
 								oncomplete="handleSalvarRequest(xhr, status, args)"
 								value="#{rotulo.enviar}" />
 								
-							<p:commandButton type="reset" value="#{rotulo.limpar}" id="#{rotulo.limpar}" />
-							<p:commandButton value="#{rotulo.excluir}" rendered="${grupoMBean.grupoSelecionado != null}" actionListener ="#{grupoMBean.excluirGrupo}"  ajax="false" />	
+							<p:commandButton process="@this"  value="#{rotulo.limpar}" id="#{rotulo.limpar}" actionListener="#{groupMBean.reset}" update=":formSalvarGrupo" />
+							<p:commandButton value="#{rotulo.excluir}" rendered="${groupMBean.groupSelecionado != null}" actionListener ="#{groupMBean.excluirGrupo}"   />	
 						</p>    
 	               		
 	            </p:panel>

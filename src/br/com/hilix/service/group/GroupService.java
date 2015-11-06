@@ -21,9 +21,9 @@ public class GroupService  {
 		}
 		
 		public void remove(Grupo group){
-			//em.getTransaction().begin();
-			dao.delete(group);
-			//em.getTransaction().commit();
+			Grupo grupo1= this.find(group.getIdGroup());
+			dao.delete(grupo1);
+			
 		}
 		
 	    public void update(Grupo group) {

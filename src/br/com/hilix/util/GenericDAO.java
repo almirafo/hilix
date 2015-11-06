@@ -33,7 +33,9 @@ public class GenericDAO<PK, T> {
     }
  
     public void delete(T entity) {
+    	//entityManager.getTransaction().begin();
         entityManager.remove(entity);
+        //entityManager.getTransaction().commit();
     }
  
     @SuppressWarnings("unchecked")
