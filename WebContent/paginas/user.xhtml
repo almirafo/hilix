@@ -30,61 +30,50 @@
 					<h:outputText value="#{rotulo.listarTodosUsuarios}" />
 				</h3>
 								<p:dataTable
-					var="usuario"
-					value="#{usuarioMBean.listaUsuarios}"
-					id="usuarioList"
-					widgetVar="usuarioList"
-					paginator="true"
-					rows="10"
-					selectionMode="single"
-					selection="#{usuarioMBean.usuarioSelecionado}"
-					rowKey="#{usuario.idUserAccess}"
-					emptyMessage="#{rotulo.naoHaUsuarios}"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15">
-					<p:ajax event="rowSelect" update=":formSalvarUsuario" oncomplete="modalSalvarUsuario.show()" /> 
+									var="usuario"
+									value="#{usuarioMBean.listaUsuarios}"
+									id="usuarioList"
+									paginator="true"
+									rows="10"
+									selectionMode="single"
+									selection="#{usuarioMBean.usuarioSelecionado}"
 
-					<p:column
-						headerText="Id"
-						styleClass="text-align:center;"
-						width="0"
-						>
-						<h:outputText value="#{usuario.idUserAccess}" />
-					</p:column>
-
-
+									emptyMessage="#{rotulo.naoHaUsuarios}"
+									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									rowsPerPageTemplate="5,10,15">
 					
-					<p:column
-						headerText="#{rotulo.login}"
-						styleClass="text-align:center;"
-						sortBy="#{usuario.login}"
-						filterBy="#{usuario.login}">
-						<h:outputText value="#{usuario.login}" />
-					</p:column>
-					<p:column
-						headerText="#{rotulo.email}"
-						styleClass="text-align:center;"
-						sortBy="#{usuario.email}"
-						filterBy="#{usuario.email}">
-						<h:outputText value="#{usuario.email}" />
-					</p:column>
-					<p:column
-						headerText="#{rotulo.tipo} #{rotulo.usuario}"
-						styleClass="text-align:center;"
-						sortBy="#{usuario.userType.nameUserType}"
-						filterBy="#{usuario.userType.nameUserType}">
-						<h:outputText value="#{usuario.userType.nameUserType}" />
-					</p:column>
-					<p:column
-						headerText="#{rotulo.status}"
-						styleClass="text-align:center;"
-						sortBy="#{usuario.status}"
-						filterBy="#{usuario.status}"
-						filterOptions="#{usuarioMBean.statusOptions}">
-						<h:outputText value="#{usuario.status}">
-							<f:converter converterId="StatusConverter" />
-						</h:outputText>
-					</p:column>
+								<p:ajax event="rowSelect" update=":formSalvarUsuario" listener="#{usuarioMBean.onRowSelect}" oncomplete="modalSalvarUsuario.show()" /> 
+								<p:column
+									headerText="#{rotulo.login}"
+									styleClass="text-align:center;"
+									sortBy="#{usuario.login}"
+									filterBy="#{usuario.login}">
+									<h:outputText value="#{usuario.login}" />
+								</p:column>
+								<p:column
+									headerText="#{rotulo.email}"
+									styleClass="text-align:center;"
+									sortBy="#{usuario.email}"
+									filterBy="#{usuario.email}">
+									<h:outputText value="#{usuario.email}" />
+								</p:column>
+								<p:column
+									headerText="#{rotulo.tipo} #{rotulo.usuario}"
+									styleClass="text-align:center;"
+									sortBy="#{usuario.userType.nameUserType}"
+									filterBy="#{usuario.userType.nameUserType}">
+									<h:outputText value="#{usuario.userType.nameUserType}" />
+								</p:column>
+								<p:column
+									headerText="#{rotulo.status}"
+									styleClass="text-align:center;"
+									sortBy="#{usuario.status}"
+									filterBy="#{usuario.status}"
+									filterOptions="#{usuarioMBean.statusOptions}">
+									<h:outputText value="#{usuario.status}">
+										<f:converter converterId="StatusConverter" />
+									</h:outputText>
+								</p:column>
 					
 					
 				</p:dataTable>
@@ -167,14 +156,10 @@
 							update=":formSalvarUsuario:messageSalvar,:formUsuario"
 							id="#{rotulo.enviar}"
 							action="#{usuarioMBean.salvarUsuario}"
-							ajax="false"
 							oncomplete="handleSalvarRequest(xhr, status, args)"
 							value="#{rotulo.enviar}" />
-						<p:commandButton
-							type="reset"
-							value="#{rotulo.limpar}"
-							id="#{rotulo.limpar}" />
-						<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" actionListener ="#{usuarioMBean.excluirUsuario}"  ajax="false"/>	
+						<p:commandButton type="reset" value="#{rotulo.limpar}" 	id="#{rotulo.limpar}" />
+						<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" action ="#{usuarioMBean.excluirUsuario}" update="tabela:usuarioList" oncomplete="modalSalvarUsuario.hide()"/>	
 					</p>    
                
             </p:panel>
