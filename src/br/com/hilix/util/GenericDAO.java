@@ -32,10 +32,12 @@ public class GenericDAO<PK, T> {
         entityManager.getTransaction().commit();
     }
  
-    public void delete(T entity) {
-    	//entityManager.getTransaction().begin();
-        entityManager.remove(entity);
-        //entityManager.getTransaction().commit();
+    public void delete(T entity,PK pk, String _attributeName) {
+    	entityManager.getTransaction().begin();
+        //entityManager.remove(entity);
+        
+    	entityManager.createQuery("Delete from " + getTypeClass().getName() + " where " + _attributeName+ " = " + pk).executeUpdate();
+    	entityManager.getTransaction().commit();
     }
  
     @SuppressWarnings("unchecked")

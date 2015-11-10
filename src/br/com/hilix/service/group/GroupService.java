@@ -21,8 +21,8 @@ public class GroupService  {
 		}
 		
 		public void remove(Grupo group){
-			Grupo grupo1= this.find(group.getIdGroup());
-			dao.delete(grupo1);
+			
+			dao.delete(group,group.getIdGroup(),"idGroup");
 			
 		}
 		

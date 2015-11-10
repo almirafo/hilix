@@ -99,7 +99,7 @@
 								value="#{rotulo.enviar}" />
 								
 							<p:commandButton process="@this"  value="#{rotulo.limpar}" id="#{rotulo.limpar}" actionListener="#{groupMBean.reset}" update=":formSalvarGrupo" />
-							<p:commandButton value="#{rotulo.excluir}" rendered="${groupMBean.groupSelecionado != null}" actionListener ="#{groupMBean.excluirGrupo}"   />	
+							<p:commandButton value="#{rotulo.excluir}" rendered="${groupMBean.groupSelecionado != null}" action ="#{groupMBean.excluirGrupo}"  oncomplete="modalSalvarGrupo.hide();" update=":tabela:grupoList"/>	
 						</p>    
 	               		
 	            </p:panel>

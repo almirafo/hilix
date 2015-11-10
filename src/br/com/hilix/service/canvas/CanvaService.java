@@ -24,7 +24,7 @@ public class CanvaService  {
 		
 		public void remove(Canva canva){
 			em.getTransaction().begin();
-			dao.delete(canva);
+			//dao.delete(canva,canva.);
 			em.getTransaction().commit();
 		}
 		

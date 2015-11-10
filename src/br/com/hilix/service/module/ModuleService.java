@@ -24,7 +24,7 @@ public class ModuleService  {
 		
 		public void remove(Module module){
 			em.getTransaction().begin();
-			dao.delete(module);
+			dao.delete(module,module.getIdmodule(),"idModule");
 			em.getTransaction().commit();
 		}
 		
