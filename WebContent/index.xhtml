@@ -21,32 +21,28 @@
 					</p>
 				</div>
 				<div id="right-box">
-					<h3>
+
+					<h:form id="formLogin" class="login-form">
+					<div class="header">
 						<h:outputText value="#{rotulo.acesse}" />
-					</h3>
-					<h:form id="formLogin">
-						<div id="login-left">
-							<div class="form-item-login">
-								<h:outputLabel
-									value="*#{rotulo.login}"
-									for="login" />
-								<h:inputText
+					</div>
+
+		<div class="content">
+		<h:inputText  class="input username" placeholder="*Username" 
 									value="#{loginMBean.login}"
 									id="login"
 									required="true"
 									validatorMessage="#{rotulo.login}: #{rotulo.erroTamanho3}"
-									requiredMessage="#{rotulo.login}: #{rotulo.campoObrigatorio}">
+									requiredMessage="#{rotulo.login}: #{rotulo.campoObrigatorio}"
+		>
 									<f:validateLength
 										maximum="50"
 										minimum="3" />
 								</h:inputText>
-							</div>
-							<div class="form-item-senha">
-								<h:outputLabel
-									value="*#{rotulo.senha}"
-									for="senha" />
-								<h:inputSecret
-									value="#{loginMBean.senha}"
+		
+		<div class="user-icon"></div>
+		<h:inputSecret class="input password" placeholder="*Password" 
+											value="#{loginMBean.senha}"
 									id="senha"
 									required="true"
 									validatorMessage="#{rotulo.senha}: #{rotulo.erroTamanho4}"
@@ -55,16 +51,16 @@
 										maximum="50"
 										minimum="4" />
 								</h:inputSecret>
-							</div>
-						</div>
-						<div id="login-right">
-							<div class="form-item-entrar">
-								<h:commandButton
-									id="button"
+		
+		
+		<div class="pass-icon"></div>		
+		</div>
+
+		<div class="footer">
+		<h:commandButton name="submit" class="button"  id="button"
 									value="#{rotulo.entrar}"
 									action="#{loginMBean.autenticarUsuario}" />
-							</div>
-						</div>
+		</div>
 					</h:form>
 					<p>&nbsp;</p>
 				</div>
