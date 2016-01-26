@@ -10,7 +10,7 @@
 		<class>br.com.hilix.entity.Canva</class>		
 		<class>br.com.hilix.entity.Grupo</class>
 		<class>br.com.hilix.entity.Module</class>
-		
+		<class>br.com.hilix.entity.Field</class>
 		
 		<properties>
 
