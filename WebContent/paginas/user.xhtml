@@ -20,9 +20,9 @@
 					<li><p:commandLink
 							value="#{rotulo.novo} #{rotulo.usuario}"
 							action="#{usuarioMBean.iniciar}"
-							id="novoUsuario"></p:commandLink>
-							<!-- oncomplete="modalSalvarUsuario.show();" 
-							update=":formSalvarUsuario" />-->
+							id="novoUsuario"
+							oncomplete="modalSalvarUsuario.show();" 
+							update=":formSalvarUsuario"/> 
 							</li>
 				</ul>
 			</div>
