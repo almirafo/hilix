@@ -16,13 +16,14 @@
 					<li><h:commandLink
 							value="#{rotulo.listar} #{rotulo.usuarios}"
 							actionListener="#{usuarioMBean.iniciar}"
-							id="#{rotulo.listarUsuario}" /></li>
+							id="listarUsuario" /></li>
 					<li><p:commandLink
 							value="#{rotulo.novo} #{rotulo.usuario}"
 							action="#{usuarioMBean.iniciar}"
-							id="#{rotulo.novoUsuario}"
-							oncomplete="modalSalvarUsuario.show();"
-							update=":formSalvarUsuario" /></li>
+							id="novoUsuario"></p:commandLink>
+							<!-- oncomplete="modalSalvarUsuario.show();" 
+							update=":formSalvarUsuario" />-->
+							</li>
 				</ul>
 			</div>
             <div id="round-border">
@@ -35,22 +36,22 @@
 									id="usuarioList"
 									paginator="true"
 									rows="10"
-									selectionMode="single"
 									selection="#{usuarioMBean.usuarioSelecionado}"
 
 									emptyMessage="#{rotulo.naoHaUsuarios}"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="5,10,15">
-					
-								<p:ajax event="rowSelect" update=":formSalvarUsuario" listener="#{usuarioMBean.onRowSelect}" oncomplete="modalSalvarUsuario.show()" /> 
-								<p:column
-									headerText="#{rotulo.login}"
-									styleClass="text-align:center;"
-									sortBy="#{usuario.login}"
-									filterBy="#{usuario.login}">
-									<h:outputText value="#{usuario.login}" />
-								</p:column>
-								<p:column
+														
+								    <p:ajax event="rowSelect" update=":formSalvarUsuario" listener="#{usuarioMBean.onRowSelect}" oncomplete="modalSalvarUsuario.show()" />
+								     
+									<p:column
+										headerText="#{rotulo.login}"
+										styleClass="text-align:center;"
+										sortBy="#{usuario.login}"
+										filterBy="#{usuario.login}">
+										<h:outputText value="#{usuario.login}" />
+									</p:column>
+									<p:column
 									headerText="#{rotulo.email}"
 									styleClass="text-align:center;"
 									sortBy="#{usuario.email}"
@@ -80,6 +81,9 @@
                 </div>
             </h:form>
             
+            
+            
+           
    		<p:dialog
 			widgetVar="modalSalvarUsuario"
 			modal="true"
@@ -152,15 +156,10 @@
 					                 
             </h:panelGrid>   
 			<p class="botoes">
-						<p:commandButton
-							update=":formSalvarUsuario:messageSalvar,:formUsuario"
-							id="#{rotulo.enviar}"
-							action="#{usuarioMBean.salvarUsuario}"
-							oncomplete="handleSalvarRequest(xhr, status, args)"
-							value="#{rotulo.enviar}" />
-						<p:commandButton type="reset" value="#{rotulo.limpar}" 	id="#{rotulo.limpar}" />
-						<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" action ="#{usuarioMBean.excluirUsuario}" update="tabela:usuarioList" oncomplete="modalSalvarUsuario.hide()"/>	
-					</p>    
+				<p:commandButton id="enviar" actionListener="#{usuarioMBean.salvarUsuario()}" oncomplete="handleSalvarRequest(xhr, status, args)" value="#{rotulo.enviar}" />
+				<p:commandButton type="reset" value="#{rotulo.limpar}" 	id="limpar" />
+				<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" action ="#{usuarioMBean.excluirUsuario}" update="tabela:usuarioList" oncomplete="modalSalvarUsuario.hide()"/>	
+			</p>    
                
             </p:panel>
             </div>
@@ -168,5 +167,7 @@
                       
         </h:form>  
         </p:dialog>    
+       
       </ui:define>
+     
 </ui:composition>
