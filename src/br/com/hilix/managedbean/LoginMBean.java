@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 
@@ -42,7 +43,7 @@ import br.com.hilix.util.Constantes;
  * 
  */
 @ManagedBean(name="loginMBean")
-@ViewScoped
+@SessionScoped
 public class LoginMBean extends AbstractManagedBean  implements Serializable
 {
 	 /**
