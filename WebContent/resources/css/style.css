@@ -269,7 +269,7 @@ img {
 #secondary-menu {
 	width: 980px;
 	height: 34px;
-	background: url(../images/bg-secondary-menu-purple.gif) no-repeat 0 0;
+	background: url(../images/bg-secondary-menu-orange.jpg) no-repeat 0 0;
 	float: left;
 }
 
@@ -293,7 +293,7 @@ img {
 	color: #fff;
 	padding: 0 25px;
 	text-decoration: none;
-	background: url(../images/secondary-menu-sep-purple.gif) no-repeat right
+	background: url(../images/secondary-menu-sep-red.png) no-repeat right
 		4px;
 }
 
@@ -302,7 +302,7 @@ img {
 }
 
 #secondary-menu ul li a:hover {
-	color: #b27adf;
+	color: #b5021d;
 }
 
 #secondary-menu ul li ul {

@@ -168,7 +168,7 @@ img {
 	height: 16px;
 	padding: 7px;
 	border: none;
-	background: transparent url(../images/bg-loginfield-purple.gif)
+	background: transparent url(../images/bg-loginfield-orange.jpg)
 		no-repeat 0 0;
 	color: #666;
 }
@@ -269,7 +269,7 @@ img {
 #secondary-menu {
 	width: 980px;
 	height: 34px;
-	background: url(../images/bg-secondary-menu-purple.gif) no-repeat 0 0;
+	background: url(../images/bg-secondary-menu-orange.jpg) no-repeat 0 0;
 	float: left;
 }
 
