@@ -37,10 +37,8 @@
 				                    var="grupo" 
 								    value="#{groupMBean.listaGrupos}" 
 								    selectionMode="single" 
-								     
 								    rowKey="#{grupo.idGroup}" 						
 								    rows="10"
-								    
 								    emptyMessage="#{rotulo.NoGroups}"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="5,10,15">
@@ -54,16 +52,13 @@
 				        <p:column headerText="Id" rendered="false">
 				            <h:outputText value="idGroup" />
 				        </p:column>
-						<p:column
-						headerText="#{rotulo.login}"
-						styleClass="text-align:center;"
-						sortBy="#{grupo.nameGroup}"
-						filterBy="#{grupo.nameGroup}">
-						<h:outputText value="#{grupo.nameGroup}" />
+						<p:column headerText="#{rotulo.groupName}"
+						          styleClass="text-align:center;"
+						          sortBy="#{grupo.nameGroup}"
+						          filterBy="#{grupo.nameGroup}">
+							<h:outputText value="#{grupo.nameGroup}" />
 						</p:column>
 					</p:dataTable>
-				
-				
 
                 </div>
             </h:form>
@@ -72,39 +67,40 @@
 			<p:dialog
 					widgetVar="modalSalvarGrupo"
 					modal="true"
-					width="570"
+					width="270"
+					height="150"
 					resizable="false"
-					height="600"
 					onCloseUpdate=":formGrupo:messages"
-					
 					onHide="labels();"
+					header="#{rotulo.groupTitle}"
 					>
 					
 			         
 	           <h:form id="formSalvarGrupo"> 
-	             <div id="round-border">     
-	            <p:panel header="#{rotulo.groupTitle}"  rendered="true" style=" width: 55%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+	                
 	                 <h:inputHidden  value="#{groupMBean.idGroup}" />
 	                
-	                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
-	                    #{rotulo.groupName} : <p:inputText  id="name"  value="#{groupMBean.nameGroup}" size="60" />
-	            	</h:panelGrid>
-	            		<!-- os comandos de botões só libera se o usuário tiver direito -->   
+		                <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none" >
+		                    #{rotulo.groupName} : <p:inputText  id="name"  value="#{groupMBean.nameGroup}" size="20" />
+		            	</h:panelGrid>
+	            		
+	            		
+	            		<!-- os comandos de botões só libera se o usuário tiver direito -->
+	            		   
 						<p class="botoes">
+						<h:panelGrid  columns="3">
 							<p:commandButton
-								update=":formSalvarGrupo:messageSalvar,:formGrupo" 	id="#{rotulo.enviar}"
+								update=":formSalvarGrupo:messageSalvar,:formGrupo,:grupoList" 	id="#{rotulo.enviar}"
 								action="#{groupMBean.salvarGrupo}"
 								ajax="false"
 								oncomplete="handleSalvarRequest(xhr, status, args)"
 								value="#{rotulo.enviar}" />
 								
 							<p:commandButton process="@this"  value="#{rotulo.limpar}" id="#{rotulo.limpar}" actionListener="#{groupMBean.reset}" update=":formSalvarGrupo" />
-							<p:commandButton value="#{rotulo.excluir}" rendered="${groupMBean.groupSelecionado != null}" action ="#{groupMBean.excluirGrupo}"  oncomplete="modalSalvarGrupo.hide();" update=":tabela:grupoList"/>	
+							<p:commandButton value="#{rotulo.excluir}" rendered="${groupMBean.groupSelecionado != null}" action ="#{groupMBean.excluirGrupo}"  oncomplete="modalSalvarGrupo.hide();" update=":grupoList"/>
+						</h:panelGrid>	
 						</p>    
-	               		
-	            </p:panel>
-	            </div>
-	            <p:messages severity="error" closable="true"/>
+	            		<p:messages severity="error" closable="true"/>
 	                      
 	        </h:form>  
 		</p:dialog>            

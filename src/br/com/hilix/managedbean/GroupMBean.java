@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.context.RequestContext;
@@ -22,7 +23,7 @@ import br.com.hilix.service.group.GroupService;
  *
  */
 @ManagedBean(name="groupMBean")
-@ViewScoped
+@SessionScoped
 public class GroupMBean extends AbstractManagedBean  implements Serializable {
 	/**
 	 * 

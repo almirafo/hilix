@@ -36,14 +36,16 @@
 									id="usuarioList"
 									paginator="true"
 									rows="10"
-									selection="#{usuarioMBean.usuarioSelecionado}"
-
+									selectionMode="single"
+									
+ 									rowKey="#{usuario.login}" 	
 									emptyMessage="#{rotulo.naoHaUsuarios}"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="5,10,15">
 														
-								    <p:ajax event="rowSelect" update=":formSalvarUsuario" listener="#{usuarioMBean.onRowSelect}" oncomplete="modalSalvarUsuario.show()" />
-								     
+								    <p:ajax event="rowSelect" listener="#{usuarioMBean.onRowSelect}" update=":formSalvarUsuario"  oncomplete="modalSalvarUsuario.show()" />
+								    
+									
 									<p:column
 										headerText="#{rotulo.login}"
 										styleClass="text-align:center;"
@@ -87,27 +89,28 @@
    		<p:dialog
 			widgetVar="modalSalvarUsuario"
 			modal="true"
-			width="570"
+			width="670"
 			resizable="false"
 			height="600"
 			onCloseUpdate=":formUsuario:messages"
+			header="#{rotulo.usuario}"
 			onHide="labels();">
 			
 			         
            <h:form id="formSalvarUsuario"> 
              <div id="round-border">     
-            <p:panel header="#{rotulo.usuario}"  rendered="true" style=" width: 55%; border: 1; font-style: italic; font-family:Arial; font-size: 12px;" >
+            
                 <h:inputHidden  value="#{usuarioMBean.usuarioSelecionado.idUserAccess}" />
                 
                 <h:panelGrid  columns="2" style="border-style:groove;border-style-inner:none ">
                 
-                    #{rotulo.login}                  :  <p:inputText  id="login"                    value="#{usuarioMBean.usuarioSelecionado.login}"    />
-                    #{rotulo.email}                  :  <p:inputText  id="email"                    value="#{usuarioMBean.usuarioSelecionado.email}"                  size="60" />
-                    #{rotulo.nome}                   :  <p:inputText  id="nome"                     value="#{usuarioMBean.usuarioSelecionado.nome}"                   size="60" />
-                    #{rotulo.telefoneDeContato}      :  <p:inputText  id="telefoneDeContato"        value="#{usuarioMBean.usuarioSelecionado.telefoneDeContato}"      size="11" />
-                    #{rotulo.nomedoSuperiorImediato} :  <p:inputText  id="nomedoSuperiorImediato"   value="#{usuarioMBean.usuarioSelecionado.nomedoSuperiorImediato}" size="60" />
-                    #{rotulo.empresa}                :  <p:inputText  id="empresa"                  value="#{usuarioMBean.usuarioSelecionado.empresa}"                size="60" />
-                    #{rotulo.cargo}                  :  <p:inputText  id="cargo"                    value="#{usuarioMBean.usuarioSelecionado.cargo}"                  size="60" />
+                    #{rotulo.login}                  :  <p:inputText  id="login"                    value="#{usuarioMBean.userSelected.login}"    />
+                    #{rotulo.email}                  :  <p:inputText  id="email"                    value="#{usuarioMBean.userSelected.email}"                  size="60" />
+                    #{rotulo.nome}                   :  <p:inputText  id="nome"                     value="#{usuarioMBean.userSelected.nome}"                   size="60" />
+                    #{rotulo.telefoneDeContato}      :  <p:inputText  id="telefoneDeContato"        value="#{usuarioMBean.userSelected.telefoneDeContato}"      size="11" />
+                    #{rotulo.nomedoSuperiorImediato} :  <p:inputText  id="nomedoSuperiorImediato"   value="#{usuarioMBean.userSelected.nomedoSuperiorImediato}" size="60" />
+                    #{rotulo.empresa}                :  <p:inputText  id="empresa"                  value="#{usuarioMBean.userSelected.empresa}"                size="60" />
+                    #{rotulo.cargo}                  :  <p:inputText  id="cargo"                    value="#{usuarioMBean.userSelected.cargo}"                  size="60" />
                     #{rotulo.tipo} #{rotulo.usuario}   : <h:selectOneListbox
 									size="1"
 									disabled="#{usuarioMBean.desabilitarTipoUsuario}"
@@ -155,13 +158,13 @@
 					 
 					                 
             </h:panelGrid>   
-			<p class="botoes">
+            <p class="botoes">
+            <h:panelGrid columns="3">
 				<p:commandButton id="enviar" actionListener="#{usuarioMBean.salvarUsuario()}" oncomplete="handleSalvarRequest(xhr, status, args)" value="#{rotulo.enviar}" />
 				<p:commandButton type="reset" value="#{rotulo.limpar}" 	id="limpar" />
 				<p:commandButton value="#{rotulo.excluir}" rendered="${usuarioMBean.usuarioSelecionado.login!= null}" action ="#{usuarioMBean.excluirUsuario}" update="tabela:usuarioList" oncomplete="modalSalvarUsuario.hide()"/>	
-			</p>    
-               
-            </p:panel>
+            </h:panelGrid>
+            </p>    
             </div>
             <p:messages severity="error" closable="true"/>
                       

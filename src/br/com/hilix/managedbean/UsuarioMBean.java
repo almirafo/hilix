@@ -18,7 +18,9 @@ import javax.faces.model.SelectItem;
 
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
+import br.com.hilix.entity.Grupo;
 import br.com.hilix.entity.UserAccess;
 import br.com.hilix.entity.UserType;
 import br.com.hilix.exception.HilixException;
@@ -42,6 +44,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private UserAccess usuarioSelecionado ;
+	private UserAccess userSelected;
 	
 	public UserAccess getUsuarioSelecionado() {
 		return usuarioSelecionado;
@@ -131,7 +134,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 	public String iniciarUsuario() throws IOException {
 		usuarioSelecionado = new UserAccess();
 		usuarioSelecionado.setUserType(new UserType());
-
+		this.userSelected= new UserAccess();
 		this.passwordConfirmado = "";
 
 		return "usuario";
@@ -146,7 +149,7 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 
 			usuarioSelecionado = new UserAccess();
 			usuarioSelecionado.setUserType(new UserType());
-
+			this.userSelected= new UserAccess();
 			this.passwordConfirmado = "";
 		}
 		catch (HilixException e) {
@@ -154,6 +157,14 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 		}
 	}
 
+	 public void onRowSelect(SelectEvent event) {
+		 	if (event.getObject() instanceof UserAccess){
+		 		UserAccess userAccess = (UserAccess)event.getObject();
+		 		this.setUserSelected(userAccess);
+		 	}
+	    }
+	
+	
 	/**
 	 * Exclusão lógica, setar o campo status para inativo
 	 */
@@ -359,6 +370,14 @@ public class UsuarioMBean extends AbstractManagedBean  implements Serializable {
 
 	public void setStatusOptions(SelectItem[] statusOptions) {
 		this.statusOptions = statusOptions;
+	}
+
+	public UserAccess getUserSelected() {
+		return userSelected;
+	}
+
+	public void setUserSelected(UserAccess userSelected) {
+		this.userSelected = userSelected;
 	}
 	
 
